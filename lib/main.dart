@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
@@ -11,6 +12,7 @@ import 'screens/auth/otp_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/login',
           routes: {
           //  '/login': (_) => const LoginScreen(),
+          //    '/home' : (_) => const HomeScreen () 
           },
         );
       }
