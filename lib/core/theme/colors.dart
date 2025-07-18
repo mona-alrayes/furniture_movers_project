@@ -23,7 +23,7 @@ class AppColors {
       Color(0xFF4B75CB), 
       Color(0xFF4999CB), 
     ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
   );
 }
