@@ -61,4 +61,9 @@ class AppFonts {
   // favorite screenst fonts
 
   //profile screens fonts
+  static TextStyle fontName = GoogleFonts.almarai(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
 }
