@@ -13,6 +13,7 @@ import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
+import 'screens/chat/chat_list_screen.dart';
 
 
 
