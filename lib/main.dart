@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
 import 'screens/splash/onboarding2_screen.dart';
@@ -17,7 +17,6 @@ import 'screens/profile/profile_screen.dart';
 
 
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -25,30 +24,31 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(428, 926), // المقاسات حسب تصميم Figma
+      designSize: const Size(428, 926), // Figma design size
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Furniture movers',
+          title: 'Furniture Movers',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
           initialRoute: '/login',
           routes: {
-
             '/login': (_) => const LoginScreen(),
-            '/home' : (_) => const HomeScreen () 
+            '/home': (_) => const HomeScreen(),
+            '/signUp': (_) => const SignUpScreen(),
+            '/forgetPassword': (_) => const ForgetPasswordScreen(),
+            '/restPassword': (_) => const RestPasswordScreen(),
+            '/otp': (_) => const OtpScreen(),
 
-            
           },
         );
-    },
+      },
     );
   }
 }
