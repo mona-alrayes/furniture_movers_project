@@ -12,6 +12,10 @@ import 'screens/auth/otp_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
+import 'screens/profile/profile_screen.dart';
+
+
+
 
 
 void main() {
@@ -35,14 +39,14 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
+
           initialRoute: '/login',
           routes: {
 
             '/login': (_) => const LoginScreen(),
             '/home' : (_) => const HomeScreen () 
-
             
-          },
+          // },
         );
       }
     );
