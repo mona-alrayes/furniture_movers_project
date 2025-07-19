@@ -9,6 +9,7 @@ class OnboardingScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -39,59 +40,54 @@ class OnboardingScreen2 extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 8),
-                    Container(
-                      width: 340,
-                      height: 340,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFFF6F6F6),
-                      ),
-                      child: ClipOval(
-                        child: Image.network(
-                          'https://img.freepik.com/free-vector/moving-house-concept_52683-42931.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+              
+              Center(
+                child: Container(
+                  width: 400,   
+                  height: 400,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/w2.png.png', 
+                      width: 400,
+                      height: 400,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(height: 16),
-                    SmoothPageIndicator(
-                      controller: _FakePageController(1),
-                      count: 3,
-                      effect: WormEffect(
-                        dotColor: Colors.grey[300]!,
-                        activeDotColor: const Color(0xFF4F8CFF),
-                        dotHeight: 8,
-                        dotWidth: 8,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Text(
-                      'كل ما تحتاجه لتصليحات المنزل',
-                      style: GoogleFonts.cairo(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Text(
-                        'فنيون محترفون جاهزون لخدمتك في أي وقت، من السباكة للكهرباء وأكثر.',
-                        style: GoogleFonts.cairo(
-                          fontSize: 16,
-                          color: Colors.grey[500],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
+              const SizedBox(height: 16),
+              SmoothPageIndicator(
+                controller: _FakePageController(1),
+                count: 3,
+                effect: WormEffect(
+                  dotColor: Colors.grey[300]!,
+                  activeDotColor: const Color(0xFF4F8CFF),
+                  dotHeight: 8,
+                  dotWidth: 8,
+                ),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'كل ما تحتاجه لتصليحات المنزل',
+                style: GoogleFonts.cairo(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Text(
+                  'فنيون محترفون جاهزون لخدمتك في أي وقت، من السباكة للكهرباء وأكثر.',
+                  style: GoogleFonts.cairo(
+                    fontSize: 16,
+                    color: Colors.grey[500],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: SizedBox(
