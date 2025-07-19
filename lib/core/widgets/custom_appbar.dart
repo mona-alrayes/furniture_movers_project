@@ -29,7 +29,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          automaticallyImplyLeading: false,
           title: Text(
             title,
             style: GoogleFonts.almarai(
