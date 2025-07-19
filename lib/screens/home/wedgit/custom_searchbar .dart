@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -7,45 +9,43 @@ class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 16.h),
       child: Row(
         children: [
           // صندوق البحث
           Expanded(
             child: Container(
-              height: 50,
+              height: 50.h,
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: Colors.grey, // لون الحدود
-                  width: 1, // سماكة الحدود
-                ),
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(color: Colors.grey.shade300),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: TextField(
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.search, color: Colors.grey),
+                  icon: Icon(Icons.search, color: Colors.grey, size: 24.r),
                   hintText: 'ابحث عن خدمة أو فني',
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          // زر الإعدادات الأزرق
-          SizedBox(width: 10),
+          SizedBox(width: 10.w),
           Container(
-            height: 50,
-            width: 50,
+            height: 50.h,
+            width: 50.w,
             decoration: BoxDecoration(
-              color: AppColors.primary, // اللون الأزرق المستخدم
-              borderRadius: BorderRadius.circular(12),
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            child: const Icon(
-              Icons.tune, // أو Icons.filter_list_alt
-              color: Colors.white,
+            child: SvgPicture.asset(
+              'assets/icons/filter.svg',
+              width: 24.w,
+              height: 24.h,
+              color: AppColors.white, // إذا كنت تريد تلوين الأيقونة
             ),
           ),
         ],
