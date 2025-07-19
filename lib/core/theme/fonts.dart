@@ -66,4 +66,9 @@ class AppFonts {
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
+  static TextStyle englishLa = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black,
+  );
 }
