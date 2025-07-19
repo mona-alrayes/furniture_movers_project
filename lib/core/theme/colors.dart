@@ -18,12 +18,14 @@ class AppColors {
   static const veryLightGrey = Color(0xFFFAFBFB);
   static const darkBlue = Color(0xFF00246D); //done
   static const brightBlue = Color(0xFF00B5EE); //done
+  static const blackPro = Color(0xFF1E1E1E); //done
+
   static const LinearGradient linears = LinearGradient(
     colors: [
       Color(0xFF4B75CB), 
       Color(0xFF4999CB), 
     ],
-    begin: Alignment.center,
-    end: Alignment.center,
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
   );
 }

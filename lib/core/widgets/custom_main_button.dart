@@ -29,7 +29,7 @@ class CustomMainButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           gradient: gradient,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
