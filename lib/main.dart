@@ -37,8 +37,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
-         // home: ProfileScreen(),
-          initialRoute: '/profile',
+          initialRoute: '/login',
           routes: {
             '/login': (_) => const LoginScreen(),
             '/home': (_) => const HomeScreen(),
