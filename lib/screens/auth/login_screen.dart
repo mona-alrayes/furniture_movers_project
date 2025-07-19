@@ -5,6 +5,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '/core/theme/colors.dart';
 import '/core/widgets/custom_main_button.dart';
 import '../../core/theme/fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +15,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
   @override
@@ -79,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 60.h,
                 child: IntlPhoneField(
+                  controller: TextEditingController(),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColors.veryLightGrey, // Use your defined grey
@@ -86,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   initialCountryCode: 'SA',
                   onChanged: (phone) {
-                    print(phone.completeNumber);
+                    _phoneController.text = phone.completeNumber;
                   },
                   textAlign: TextAlign.left,
                   showCountryFlag: true,
@@ -111,11 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 48.h,
                 child: TextField(
+                  controller: _passwordController,
                   obscureText: _obscurePassword,
                   textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: AppColors.grey, 
-                  ),
+                  style: TextStyle(color: AppColors.grey),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColors.veryLightGrey,
@@ -133,9 +137,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
                       },
                     ),
-                    suffixIcon: const Icon(
-                      Icons.lock_open,
-                      color: AppColors.mediumPrimary,
+                    suffixIcon: Padding(
+                      padding: EdgeInsets.all(11.0),
+                      child: SvgPicture.asset('assets/icons/lock-open.svg'),
                     ),
                   ),
                 ),
@@ -143,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 8.h),
               InkWell(
                 onTap: () {
-                  // Navigate to forgot password screen
+                  Navigator.pushNamed(context, '/forgetPassword');
                 },
                 child: Text(
                   'نسيت كلمة المرور؟',
@@ -159,7 +163,21 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 96.h),
 
               ///  Login Button
-              CustomMainButton(text: 'تسجيل الدخول', onPressed: () {}),
+              CustomMainButton(
+                text: 'تسجيل الدخول',
+                onPressed: () {
+                  if (_phoneController.text.isNotEmpty &&
+                      _passwordController.text.isNotEmpty) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('يرجى إدخال رقم الهاتف وكلمة المرور'),
+                      ),
+                    );
+                  }
+                },
+              ),
               SizedBox(height: 16.h),
               Align(
                 alignment: Alignment.center,
@@ -169,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     InkWell(
                       onTap: () {
-                        // Navigate to sign-up screen
+                        Navigator.pushNamed(context, '/signUp');
                       },
                       child: Text(
                         'إنشاء جديد',
