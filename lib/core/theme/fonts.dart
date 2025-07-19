@@ -29,6 +29,11 @@ class AppFonts {
     fontWeight: FontWeight.w800,
     color: AppColors.black,
   );
+  static TextStyle signInServiceFont = GoogleFonts.poppins(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primary,
+  );
 
   static TextStyle signInSecondaryHeaderFont = GoogleFonts.poppins(
     fontSize: 16.sp,

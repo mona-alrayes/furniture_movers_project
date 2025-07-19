@@ -11,7 +11,7 @@ class CustomSecondaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final TextStyle? textStyle;
 
-  CustomSecondaryButton({
+  const CustomSecondaryButton({
     Key? key,
     required this.text,
     required this.onPressed,
