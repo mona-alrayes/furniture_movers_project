@@ -39,12 +39,12 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
-            home: const ProfileScreen(),
-          // initialRoute: '/profile',
-          // routes: {
-            
-           // '/login': (_) => const ProfileScreen(),
-           //    '/home' : (_) => const ProfileScreen ()
+
+          initialRoute: '/login',
+          routes: {
+
+            '/login': (_) => const LoginScreen(),
+            '/home' : (_) => const HomeScreen () 
             
           // },
         );
