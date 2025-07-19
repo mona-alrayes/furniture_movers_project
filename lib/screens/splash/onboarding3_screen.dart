@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'onboarding2_screen.dart';
-//import 'login_screen.dart';
 import '../auth/login_screen.dart';
 
 class OnboardingScreen3 extends StatelessWidget {

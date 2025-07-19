@@ -12,6 +12,9 @@ import 'screens/auth/otp_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
+import 'screens/profile/profile_screen.dart';
+
+
 
 
 
@@ -36,20 +39,16 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
-          initialRoute: '/splash',
+          initialRoute: '/login',
           routes: {
 
             '/login': (_) => const LoginScreen(),
-            '/home' : (_) => const HomeScreen () ,
-            '/splash': (_) => const SplashScreen(),
-            '/onboarding1': (_) => const OnboardingScreen1(),
-             '/onboarding2': (_) => const OnboardingScreen2(),
-             '/onboarding3': (_) => const OnboardingScreen3(),
+            '/home' : (_) => const HomeScreen () 
 
             
           },
         );
-      }
+    },
     );
   }
 }
