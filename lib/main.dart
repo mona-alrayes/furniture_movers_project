@@ -14,6 +14,7 @@ import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
 
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -35,11 +36,15 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
-          initialRoute: '/login',
+          initialRoute: '/splash',
           routes: {
 
             '/login': (_) => const LoginScreen(),
-            '/home' : (_) => const HomeScreen () 
+            '/home' : (_) => const HomeScreen () ,
+            '/splash': (_) => const SplashScreen(),
+            '/onboarding1': (_) => const OnboardingScreen1(),
+             '/onboarding2': (_) => const OnboardingScreen2(),
+             '/onboarding3': (_) => const OnboardingScreen3(),
 
             
           },
