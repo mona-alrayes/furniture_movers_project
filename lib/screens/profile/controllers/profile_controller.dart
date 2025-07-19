@@ -2,24 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProfileMenuItem {
-  final String iconPath;
-  final String label;
-  final VoidCallback? onTap;
-
-  ProfileMenuItem({
-    required this.iconPath,
-    required this.label,
-    this.onTap,
-  });
-}
-
-class ProfileMenuSection {
-  final String title;
-  final List<ProfileMenuItem> items;
-
-  ProfileMenuSection({required this.title, required this.items});
-}
+import '../models/profile_action.dart';
 
 class ProfileController extends ChangeNotifier {
   ProfileController();
@@ -64,87 +47,98 @@ class ProfileController extends ChangeNotifier {
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // TODO منطق العناصر (تُستدعى من واجهة المستخدم حسب ProfileAction)
+  // ---------------------------------------------------------------------------
   Future<void> changePhone() async {
     // TODO: أضف المنطق لتغيير رقم الهاتف
+    debugPrint('changePhone() called');
   }
 
   Future<void> changePassword() async {
     // TODO
+    debugPrint('changePassword() called');
   }
 
   Future<void> changeLanguage() async {
-    // TODO
+    // ملاحظة: الملاحة تُدار من شاشة البروفايل. اتركها فارغة أو استخدم event bus.
+    debugPrint('changeLanguage() (logic placeholder)');
   }
 
   Future<void> toggleAppMode() async {
-    // TODO
+    // TODO: Light / Dark
+    debugPrint('toggleAppMode() called');
   }
 
   void contactUs() {
-    // TODO
+    // TODO: افتح mailto أو صفحة تواصل
+    debugPrint('contactUs() called');
   }
 
   void showTerms() {
-    // TODO
+    // TODO: اعرض صفحة شروط الخدمة
+    debugPrint('showTerms() called');
   }
 
   void showAbout() {
-    // TODO
+    // TODO: اعرض صفحة حول التطبيق
+    debugPrint('showAbout() called');
   }
 
   Future<void> logout() async {
-    // TODO
+    // TODO: سجل خروج المستخدم
+    debugPrint('logout() called');
   }
 
   void _buildSections() {
     _sections = [
       ProfileMenuSection(
         title: 'الحساب',
-        items: [
+        items: const [
           ProfileMenuItem(
             iconPath: 'assets/icons/contact-icon.png',
             label: 'تغيير رقم التلفون',
-            onTap: changePhone,
+            action: ProfileAction.changePhone,
           ),
           ProfileMenuItem(
             iconPath: 'assets/icons/lock-open.png',
             label: 'تغيير كلمة المرور',
-            onTap: changePassword,
+            action: ProfileAction.changePassword,
           ),
         ],
       ),
       ProfileMenuSection(
         title: 'التفضيلات',
-        items: [
+        items: const [
           ProfileMenuItem(
             iconPath: 'assets/icons/world-longitude.png',
             label: 'لغة التطبيق',
-            onTap: changeLanguage,
+            action: ProfileAction.changeLanguage,
           ),
           ProfileMenuItem(
             iconPath: 'assets/icons/Sun.png',
             label: 'مود التطبيق',
-            onTap: toggleAppMode,
+            action: ProfileAction.toggleAppMode,
           ),
         ],
       ),
       ProfileMenuSection(
         title: 'السياسات والخصوصية',
-        items: [
+        items: const [
           ProfileMenuItem(
             iconPath: 'assets/icons/contact-icon.png',
             label: 'تواصل بنا',
-            onTap: contactUs,
+            action: ProfileAction.contactUs,
           ),
           ProfileMenuItem(
             iconPath: 'assets/icons/Paper1.png',
             label: 'شروط الخدمة',
-            onTap: showTerms,
+            action: ProfileAction.showTerms,
           ),
           ProfileMenuItem(
             iconPath: 'assets/icons/about-icon.png',
             label: 'حول التطبيق',
-            onTap: showAbout,
+            action: ProfileAction.showAbout,
           ),
         ],
       ),

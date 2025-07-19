@@ -1,9 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'controllers/profile_controller.dart';
+import 'models/profile_action.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/theme/fonts.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'app_language_screen.dart';
+import 'app_mode_screen.dart';
+import 'models/error_log_out.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -14,22 +18,84 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late final ProfileController controller;
+  late final VoidCallback _controllerListener; // للاستخدام في removeListener
   int _currentIndex = 3;
 
   @override
   void initState() {
     super.initState();
     controller = ProfileController();
-    controller.addListener(() {
+    _controllerListener = () {
       if (mounted) setState(() {});
-    });
+    };
+    controller.addListener(_controllerListener);
     controller.init();
   }
 
   @override
   void dispose() {
-    controller.removeListener(() {});
+    controller.removeListener(_controllerListener);
+    controller.dispose();
     super.dispose();
+  }
+
+  // ---------------------------------------------------------------------------
+  // الملاحة إلى شاشة اختيار اللغة (UI فقط)
+  // ---------------------------------------------------------------------------
+  Future<void> _openLanguageScreen() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const LanguageSelectionScreen(),
+      ),
+    );
+    // لاحقاً: استقبل قيمة اللغة المختارة وحدث الـ Locale.
+  }
+  Future<void> _openModeScreen() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const AppModeScreen(),
+      ),
+    );
+    // لاحقاً: استقبل قيمة اللغة المختارة وحدث الـ Locale.
+  }
+  void _showLogoutDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => const LogoutDialog(),
+    );
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // توزيع الأفعال حسب ProfileAction
+  // ---------------------------------------------------------------------------
+  void _handleAction(ProfileAction action) {
+    switch (action) {
+      case ProfileAction.changePhone:
+        controller.changePhone();
+        break;
+      case ProfileAction.changePassword:
+        controller.changePassword();
+        break;
+      case ProfileAction.changeLanguage:
+        _openLanguageScreen(); // الملاحة من الـ UI
+        break;
+      case ProfileAction.toggleAppMode:
+        _openModeScreen();
+        break;
+      case ProfileAction.contactUs:
+        controller.contactUs();
+        break;
+      case ProfileAction.showTerms:
+        controller.showTerms();
+        break;
+      case ProfileAction.showAbout:
+        controller.showAbout();
+        break;
+      case ProfileAction.logout:
+        _showLogoutDialog();
+        break;
+    }
   }
 
   @override
@@ -125,7 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               (item) => _profileTile(
             icon: item.iconPath,
             text: item.label,
-            onTap: item.onTap ?? () {},
+            onTap: () => _handleAction(item.action),
           ),
         ),
       ],
@@ -176,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             'تسجيل خروج',
             style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 16.sp),
           ),
-          onTap: () => controller.logout(),
+          onTap: () => _handleAction(ProfileAction.logout),
         ),
       ),
     );

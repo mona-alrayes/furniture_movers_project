@@ -39,16 +39,19 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           ),
-
-          initialRoute: '/login',
+         // home: ProfileScreen(),
+          initialRoute: '/profile',
           routes: {
 
             '/login': (_) => const LoginScreen(),
-            '/home' : (_) => const HomeScreen () 
-            
+            '/home': (_) => const HomeScreen (),
+            '/profile': (_) => const ProfileScreen (),
+
+          }
           // },
+      //   );
         );
-      }
+    },
     );
   }
 }

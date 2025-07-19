@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'onboarding_screen1.dart';
-import 'onboarding_screen3.dart';
+import 'onboarding1_screen.dart';
+import 'onboarding3_screen.dart';
 
 class OnboardingScreen2 extends StatelessWidget {
   const OnboardingScreen2({Key? key}) : super(key: key);
