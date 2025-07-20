@@ -18,7 +18,6 @@ import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
 import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
 import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -52,11 +51,11 @@ class MyApp extends StatelessWidget {
             '/onboarding2': (_) => const OnboardingScreen2(),
             '/onboarding3': (_) => const OnboardingScreen3(),
             '/chat': (_) => const ChatListScreen(),
-
           },
         );
       },
     );
   }
 }
+
 
