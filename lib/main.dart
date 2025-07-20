@@ -51,6 +51,8 @@ class MyApp extends StatelessWidget {
             '/onboarding2': (_) => const OnboardingScreen2(),
             '/onboarding3': (_) => const OnboardingScreen3(),
             '/chat': (_) => const ChatListScreen(),
+            '/TermsAndConditions': (_) => const TermsConditionsScreen(),
+
           },
         );
       },
