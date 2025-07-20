@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class ProfileController extends ChangeNotifier {
   String userName = 'اسم المستخدم';
   String profileImageUrl = 'https://i.pravatar.cc/150?img=3'; // رابط صورة افتراضية
@@ -20,4 +21,4 @@ class ProfileController extends ChangeNotifier {
     location = newLocation;
     notifyListeners();
   }
-} 
+}

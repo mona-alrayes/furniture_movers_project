@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/controllers/user_controller.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_appar.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar%20.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
+import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/service.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/slidar.dart';
+import 'package:furniture_movers_project/core/widgets/main_layout.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,13 +37,26 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  int _currentIndex = 0;
-  final List<Widget> _screens = [HomeScreen()];
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+  final List<Worker> workers = [
+    Worker(
+      name: "محمد حسن احمد",
+      jobTitle: "مهندس كهربائي",
+      imagePath: "assets/images/005.JPG",
+      rating: 4.5,
+    ),
+    Worker(
+      name: "علي عبدالله سعيد",
+      jobTitle: "نقل أثاث",
+      imagePath: "assets/images/005.JPG",
+      rating: 3.8,
+    ),
+    Worker(
+      name: "احمد سليمان",
+      jobTitle: "نجار محترف",
+      imagePath: "assets/images/005.JPG",
+      rating: 5.0,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,70 +64,37 @@ class _HomeScreenState extends State<HomeScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBarHome(),
         body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomSearchBar(),
-              CustomTitle(Title: "العروض  الخاصة"),
-              SizedBox(height: 10),
+              SizedBox(height: 10.h),
+              CustomTitle(title: "العروض الخاصة"),
+              SizedBox(height: 10.h),
               ServicesSlider(),
-              CustomTitle(Title: "الخدمات الأساسية"),
+              SizedBox(height: 20.h),
+              CustomTitle(title: "الخدمات الأساسية"),
+              SizedBox(height: 10.h),
               ServicesList(),
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomTitle(Title: "المميزون اليوم"),
+                  CustomTitle(title: "المميزون اليوم"),
                   Text(
                     "عرض المزيد",
-                    style: TextStyle(fontSize: 18, color: AppColors.primary),
+                    style: TextStyle(fontSize: 16.sp, color: AppColors.primary),
                   ),
                 ],
               ),
+              WorkersList(workers: workers),
             ],
           ),
         ),
-        bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.circular(10.0),
-          ),
 
-          child: BottomNavigationBar(
-            backgroundColor: AppColors.white,
-            type: BottomNavigationBarType.fixed, // لمنع التحريك أو الاختفاء
-            currentIndex: _currentIndex,
-            onTap: _onItemTapped,
-            selectedItemColor: Colors.blue, // لون العنصر النشط
-            unselectedItemColor: Colors.grey,
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home), // أيقونة مملوءة عند التحديد
-                label: 'الرئيسية',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.receipt_long_outlined),
-                activeIcon: Icon(Icons.receipt_long),
-                label: 'الطلبات',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border),
-                activeIcon: Icon(Icons.favorite),
-                label: 'المفضلة',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                activeIcon: Icon(Icons.person),
-                label: 'البروفايل',
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
