@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
 import 'screens/splash/onboarding2_screen.dart';
@@ -12,9 +13,7 @@ import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
-
-
-
+import 'screens/chat/chat_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,7 +47,6 @@ class MyApp extends StatelessWidget {
             '/onboarding1': (_) => const OnboardingScreen1(),
             '/onboarding2': (_) => const OnboardingScreen2(),
             '/onboarding3': (_) => const OnboardingScreen3(),
-
 
           },
         );

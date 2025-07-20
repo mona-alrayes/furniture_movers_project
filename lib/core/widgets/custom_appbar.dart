@@ -3,16 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/colors.dart';
 
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onBack;
 
-  const CustomAppBar({
-    Key? key,
-    required this.title,
-    this.onBack,
-  }) : super(key: key);
+  const CustomAppBar({Key? key, required this.title, this.onBack})
+    : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(56.h);
@@ -23,12 +19,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: Size.fromHeight(56.h),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.white ,
+          color: AppColors.white,
           border: Border(
-            bottom: BorderSide(
-              color: AppColors.regularGrey,
-              width: 1, 
-            ),
+            bottom: BorderSide(color: AppColors.regularGrey, width: 1),
           ),
         ),
         child: AppBar(
@@ -46,22 +39,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w ),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 5.w),
               child: GestureDetector(
                 onTap: onBack ?? () => Navigator.of(context).pop(),
                 child: Container(
                   width: 40.w,
                   height: 40.h,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color:AppColors.regularGrey,
-                      width: 1,
-                    ),
+                    border: Border.all(color: AppColors.regularGrey, width: 1),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Icon(
                     Icons.arrow_forward_ios,
-                    size: 20.sp,
+                    size: 18.sp,
                     color: AppColors.grey,
                   ),
                 ),
