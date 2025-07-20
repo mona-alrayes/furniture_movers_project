@@ -53,7 +53,47 @@ class AppFonts {
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
+  //Contact Us screen
+  static TextStyle contactUsFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primary,
+  );
+  // About App screen
+  static TextStyle aboutAppTitle1FormFont = GoogleFonts.almarai(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
 
+  static TextStyle aboutAppHedarFormFont = GoogleFonts.almarai(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
+  static TextStyle aboutAppBodyFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
+  );
+  //كلمه خدماتك
+  static TextStyle aboutAppTitle2FormFont = GoogleFonts.tajawal(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w800,
+    color: AppColors.primary,
+  );
+  // term&conddition screen
+  static TextStyle termCondTitleFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
+
+  static TextStyle termCondBodyFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.grey,
+  );
   // home screen fonts
 
   // service screens fonts
