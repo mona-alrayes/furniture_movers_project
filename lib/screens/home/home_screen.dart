@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/controllers/user_controller.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_appar.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar%20.dart';
@@ -10,6 +10,8 @@ import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/service.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/slidar.dart';
+import 'package:furniture_movers_project/core/widgets/main_layout.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,15 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // await _controller.fetchUserData();
     setState(() {
       isLoading = false;
-    });
-  }
-
-  int _currentIndex = 0;
-  final List<Widget> _screens = [HomeScreen()];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
     });
   }
 
@@ -93,10 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   CustomTitle(title: "المميزون اليوم"),
                   Text(
                     "عرض المزيد",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      color: AppColors.primary,
-                    ),
+                    style: TextStyle(fontSize: 16.sp, color: AppColors.primary),
                   ),
                 ],
               ),
@@ -104,46 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: AppColors.white,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex,
-          onTap: _onItemTapped,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-          unselectedLabelStyle: TextStyle(fontSize: 12.sp),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined, size: 24.r),
-              activeIcon: Icon(Icons.home, size: 26.r),
-              label: 'الرئيسية',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/Frame.svg',
-                width: 24.w,
-                height: 24.h,
-              ),
-              activeIcon: SvgPicture.asset(
-                'assets/icons/chat_filled.svg',
-                width: 24.w,
-                height: 24.h,
-              ),
-              label: 'الشات',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border, size: 24.r),
-              activeIcon: Icon(Icons.favorite, size: 26.r),
-              label: 'المفضلة',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline, size: 24.r),
-              activeIcon: Icon(Icons.person, size: 26.r),
-              label: 'البروفايل',
-            ),
-          ],
-        ),
+
       ),
     );
   }
