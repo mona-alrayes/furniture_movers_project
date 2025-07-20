@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import './onboarding2_screen.dart';
-import './onboarding3_screen.dart';
+import 'onboarding2_screen.dart';
+import 'onboarding3_screen.dart';
 
 class OnboardingScreen1 extends StatelessWidget {
   const OnboardingScreen1({Key? key}) : super(key: key);
@@ -44,59 +44,54 @@ class OnboardingScreen1 extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 8),
-                    Container(
-                      width: 440,
-                      height: 440,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFFF6F6F6),
-                      ),
-                      child: ClipOval(
-                        child: Image.network(
-                          'https://img.freepik.com/free-vector/delivery-service-with-mover-truck_23-2148505081.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+              
+             Center(
+                child: Container(
+                  width: 400,   
+                  height: 400,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/w1.png.png', 
+                      width: 400,
+                      height: 400,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(height: 16),
-                    SmoothPageIndicator(
-                      controller: _FakePageController(0),
-                      count: 3,
-                      effect: WormEffect(
-                        dotColor: Colors.grey[300]!,
-                        activeDotColor: const Color(0xFF4F8CFF),
-                        dotHeight: 8,
-                        dotWidth: 8,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Text(
-                      'نقل موثوق وسريع',
-                      style: GoogleFonts.cairo(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Text(
-                        'نقوم بنقل أثاثك بأمان إلى أي مكان، بسرعة ودقة، دون عناء منك.',
-                        style: GoogleFonts.cairo(
-                          fontSize: 16,
-                          color: Colors.grey[500],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
+              const SizedBox(height: 16),
+              SmoothPageIndicator(
+                controller: _FakePageController(0),
+                count: 3,
+                effect: WormEffect(
+                  dotColor: Colors.grey[300]!,
+                  activeDotColor: const Color(0xFF4F8CFF),
+                  dotHeight: 8,
+                  dotWidth: 8,
+                ),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'نقل موثوق وسريع',
+                style: GoogleFonts.cairo(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Text(
+                  'نقوم بنقل أثاثك بأمان إلى أي مكان، بسرعة ودقة، دون عناء منك.',
+                  style: GoogleFonts.cairo(
+                    fontSize: 16,
+                    color: Colors.grey[500],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: SizedBox(

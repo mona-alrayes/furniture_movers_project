@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import './onboarding2_screen.dart';
+import 'onboarding2_screen.dart';
+import '../auth/login_screen.dart';
 
 class OnboardingScreen3 extends StatelessWidget {
   const OnboardingScreen3({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -25,66 +27,61 @@ class OnboardingScreen3 extends StatelessWidget {
                   children: [],
                 ),
               ),
-              Expanded(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 8),
-                    Container(
-                      width: 340,
-                      height: 340,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xFFF6F6F6),
-                      ),
-                      child: ClipOval(
-                        child: Image.network(
-                          'https://img.freepik.com/free-vector/handyman-service-concept_52683-37621.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+              Center(
+                child: Container(
+                  width: 400,
+                  height: 400,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/w3.png.png',
+                      width: 400,
+                      height: 400,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(height: 16),
-                    SmoothPageIndicator(
-                      controller: _FakePageController(2),
-                      count: 3,
-                      effect: WormEffect(
-                        dotColor: Colors.grey[300]!,
-                        activeDotColor: const Color(0xFF4F8CFF),
-                        dotHeight: 8,
-                        dotWidth: 8,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Text(
-                      'سهولة وسرعة في كل خطوة',
-                      style: GoogleFonts.cairo(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Text(
-                        'من الحجز إلى التنفيذ، نضمن لك تجربة سريعة، بسيطة، وفعالة.',
-                        style: GoogleFonts.cairo(
-                          fontSize: 16,
-                          color: Colors.grey[500],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
+              const SizedBox(height: 16),
+              SmoothPageIndicator(
+                controller: _FakePageController(2),
+                count: 3,
+                effect: WormEffect(
+                  dotColor: Colors.grey[300]!,
+                  activeDotColor: const Color(0xFF4F8CFF),
+                  dotHeight: 8,
+                  dotWidth: 8,
+                ),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'سهولة وسرعة في كل خطوة',
+                style: GoogleFonts.cairo(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Text(
+                  'من الحجز إلى التنفيذ، نضمن لك تجربة سريعة، بسيطة، وفعالة.',
+                  style: GoogleFonts.cairo(
+                    fontSize: 16,
+                    color: Colors.grey[500],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: SizedBox(
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),

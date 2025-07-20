@@ -1,81 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBarHome({super.key});
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => Size.fromHeight(80.h);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // معلومات المستخدم باستخدام ListTile
-          Expanded(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-
-              title: Row(
+      automaticallyImplyLeading: false,
+      title: Padding(
+        padding: EdgeInsets.only(top: 8.0.h), // تنسيق رأسي خفيف
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 22.r,
+              backgroundImage: AssetImage('assets/images/profile.jpg'),
+            ),
+            SizedBox(width: 8.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 22,
-                    backgroundImage: AssetImage('assets/images/profile.jpg'),
-                  ),
-                  SizedBox(width: 5),
-                  const Text(
+                  Text(
                     'مرحباً، محمد حسن',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
-                    textAlign: TextAlign.right,
                   ),
-                ],
-              ),
-              subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Icon(Icons.location_on, size: 14, color: Colors.grey),
-
-                  Text(
-                    'الاسكندرية، مصر',
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                  SizedBox(width: 4),
-                  Icon(
-                    Icons.keyboard_arrow_down_outlined,
-                    size: 20,
-                    color: Colors.grey,
+                  SizedBox(height: 4.h),
+                  Row(
+                    children: [
+                      Icon(Icons.location_on, size: 14.r, color: Colors.grey),
+                      SizedBox(width: 2.w),
+                      Text(
+                        'الاسكندرية، مصر',
+                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_outlined,
+                        size: 18.r,
+                        color: Colors.grey,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-          // أيقونة الجرس
-          Stack(
-            children: [
-              const Icon(Icons.notifications_none, color: Colors.black),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF1FC61F),
-                    shape: BoxShape.circle,
+            Stack(
+              children: [
+                Icon(Icons.notifications_none, color: Colors.black, size: 24.r),
+                Positioned(
+                  top: 0.h,
+                  right: 0.w,
+                  child: Container(
+                    width: 8.w,
+                    height: 8.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1FC61F),
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

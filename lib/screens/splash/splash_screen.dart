@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import './onboarding1_screen.dart';
-
+import 'onboarding1_screen.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -36,11 +35,14 @@ class _SplashScreenState extends State<SplashScreen> {
                   shape: BoxShape.circle,
                   color: Color(0xFFE0E0E0),
                 ),
-                child: const Center(
-                  child: Icon(
-                    Icons.flutter_dash,
-                    size: 64,
-                    color: Colors.blueAccent,
+               child: Center(
+                 child: ClipOval(
+                  child: Image.asset(
+                        'assets/images/w00.png.jpg',
+                     width: 120,  
+                    height: 120,  
+                    fit: BoxFit.cover, 
+                     ),
                   ),
                 ),
               ),
