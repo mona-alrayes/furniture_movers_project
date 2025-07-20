@@ -39,6 +39,17 @@ class MyApp extends StatelessWidget {
           routes: {
             '/login': (_) => const LoginScreen(),
             '/home': (_) => const HomeScreen(),
+            '/signUp': (_) => const SignUpScreen(),
+            '/forgetPassword': (_) => const ForgetPasswordScreen(),
+            '/restPassword': (_) => const RestPasswordScreen(),
+            '/otp': (_) => const OtpScreen(),
+            '/splash': (_) => const SplashScreen(),
+            '/onboarding1': (_) => const OnboardingScreen1(),
+            '/onboarding2': (_) => const OnboardingScreen2(),
+            '/onboarding3': (_) => const OnboardingScreen3(),
+            '/furnituremoving': (context) => FurnitureMoving(),
+
+
           },
         );
       },
