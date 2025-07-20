@@ -118,7 +118,7 @@ class WorkerCard extends StatelessWidget {
                 print('تم التقييم: $rating');
               },
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 16.h),
             // ElevatedButton(onPressed: () {}, child: Text("احجز الأن")),
             CustomBttonHajz(text: "أحجز الأن", onPressed: () {}),
           ],
@@ -142,14 +142,17 @@ class WorkersList extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(height: 4),
       itemBuilder: (context, index) {
         final worker = workers[index];
-        return WorkerCard(
-          name: worker.name,
-          jobTitle: worker.jobTitle,
-          imagePath: worker.imagePath,
-          rating: worker.rating,
-          onFavoritePressed: () {
-            print('تم إضافة ${worker.name} إلى المفضلة');
-          },
+        return InkWell(
+          onTap: (){},
+          child: WorkerCard(
+            name: worker.name,
+            jobTitle: worker.jobTitle,
+            imagePath: worker.imagePath,
+            rating: worker.rating,
+            onFavoritePressed: () {
+              print('تم إضافة ${worker.name} إلى المفضلة');
+            },
+          ),
         );
       },
     );
