@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'onboarding_screen2.dart';
+import './onboarding2_screen.dart';
 
 class OnboardingScreen3 extends StatelessWidget {
   const OnboardingScreen3({Key? key}) : super(key: key);
@@ -16,11 +16,13 @@ class OnboardingScreen3 extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                  ],
+                  children: [],
                 ),
               ),
               Expanded(
@@ -82,8 +84,7 @@ class OnboardingScreen3 extends StatelessWidget {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -92,9 +93,10 @@ class OnboardingScreen3 extends StatelessWidget {
                       elevation: 0,
                       backgroundColor: null,
                     ).copyWith(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                        (states) => null,
-                      ),
+                      backgroundColor:
+                          MaterialStateProperty.resolveWith<Color?>(
+                            (states) => null,
+                          ),
                       foregroundColor: MaterialStateProperty.all<Color>(
                         Colors.white,
                       ),
@@ -130,7 +132,9 @@ class OnboardingScreen3 extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
+                        MaterialPageRoute(
+                          builder: (_) => const OnboardingScreen2(),
+                        ),
                       );
                     },
                     style: OutlinedButton.styleFrom(

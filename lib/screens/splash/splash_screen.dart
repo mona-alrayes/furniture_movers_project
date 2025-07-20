@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'onboarding_screen1.dart';
+import './onboarding1_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -65,11 +65,12 @@ class _SplashScreenState extends State<SplashScreen> {
 class DottedBackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.grey.withOpacity(0.15)
-      ..style = PaintingStyle.fill;
+    final paint =
+        Paint()
+          ..color = Colors.grey.withOpacity(0.15)
+          ..style = PaintingStyle.fill;
 
-    const double step = 24; 
+    const double step = 24;
     const double dotRadius = 1.5;
 
     for (double y = step / 2; y < size.height; y += step) {

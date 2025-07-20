@@ -14,10 +14,6 @@ import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
 
-
-
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -42,13 +38,11 @@ class MyApp extends StatelessWidget {
 
           initialRoute: '/login',
           routes: {
-
             '/login': (_) => const LoginScreen(),
-            '/home' : (_) => const HomeScreen () 
-            
-          // },
+            '/home': (_) => const HomeScreen(),
+          },
         );
-      }
+      },
     );
   }
 }
