@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
-import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
 import 'screens/splash/onboarding2_screen.dart';
@@ -42,7 +41,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/splash',
           routes: {
             '/login': (_) => const LoginScreen(),
-            '/home': (_) => const MainLayout(),
+            '/home': (_) => const HomeScreen(),
             '/signUp': (_) => const SignUpScreen(),
             '/forgetPassword': (_) => const ForgetPasswordScreen(),
             '/restPassword': (_) => const RestPasswordScreen(),
@@ -52,9 +51,6 @@ class MyApp extends StatelessWidget {
             '/onboarding2': (_) => const OnboardingScreen2(),
             '/onboarding3': (_) => const OnboardingScreen3(),
             '/chat': (_) => const ChatListScreen(),
-            '/TermsAndConditions': (_) => const TermsConditionsScreen(),
-
-  
           },
         );
       },
