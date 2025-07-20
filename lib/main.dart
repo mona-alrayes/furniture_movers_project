@@ -15,9 +15,6 @@ import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
 import 'screens/chat/chat_list_screen.dart';
 
-
-
-
 void main() {
   runApp(const MyApp());
 }

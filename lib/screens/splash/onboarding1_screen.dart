@@ -17,7 +17,10 @@ class OnboardingScreen1 extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -25,7 +28,9 @@ class OnboardingScreen1 extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (_) => const OnboardingScreen3()),
+                          MaterialPageRoute(
+                            builder: (_) => const OnboardingScreen3(),
+                          ),
                         );
                       },
                       child: Text(
@@ -96,7 +101,9 @@ class OnboardingScreen1 extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
+                        MaterialPageRoute(
+                          builder: (_) => const OnboardingScreen2(),
+                        ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -107,9 +114,10 @@ class OnboardingScreen1 extends StatelessWidget {
                       elevation: 0,
                       backgroundColor: null,
                     ).copyWith(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                        (states) => null,
-                      ),
+                      backgroundColor:
+                          MaterialStateProperty.resolveWith<Color?>(
+                            (states) => null,
+                          ),
                       foregroundColor: MaterialStateProperty.all<Color>(
                         Colors.white,
                       ),
