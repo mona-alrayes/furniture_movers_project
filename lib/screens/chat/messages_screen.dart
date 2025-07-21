@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/core/theme/fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/screens/chat/models/chat_user.dart';
 import 'package:furniture_movers_project/screens/chat/controllers/messages_controller.dart';
+
 
 enum MessagePosition {
   single,
@@ -155,25 +158,25 @@ class _MessagesScreenState extends State<MessagesScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        toolbarHeight: 72,
+        toolbarHeight: 72.h,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding:  EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 40,
-                height: 40,
+                width: 40.w,
+                height: 40.h,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.regularGrey, width: 1),
-                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppColors.regularGrey, width: 1.w),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 6),
+                  padding: EdgeInsets.only(left: 6.w),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios, color: AppColors.grey, size: 20),
+                    icon: Icon(Icons.arrow_back_ios, color: AppColors.grey, size: 20.sp),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -185,16 +188,20 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(widget.user.name, style: const TextStyle(fontSize: 16)),
+                      Text(widget.user.name, style: AppFonts.mainNameChatMessagesFont.copyWith(
+                      ),),
+                      SizedBox(height: 10.h),
                       Text(
                         widget.user.status,
-                        style: const TextStyle(fontSize: 12, color: AppColors.green),
+                        style: AppFonts.statueConectionChatMessagesFont.copyWith(
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12.w),
                   CircleAvatar(
                     backgroundImage: AssetImage(widget.user.avatarUrl),
+                    radius: 24.r,
                   ),
                 ],
               ),
@@ -202,13 +209,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
           ),
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(2),
+          preferredSize: Size.fromHeight(2.h),
           child: Container(
-            height: 2,
+            height: 2.h,
             color: AppColors.mediumGrey,
           ),
         ),
       ),
+
       body: Container(
         color: AppColors.white,
         child: Column(
@@ -229,25 +237,22 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   final groupedBySender = groupMessagesBySender(messagesForDate);
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Column(
                       children: [
                         IntrinsicWidth(
                           child: Container(
-                            height: 30,
-                            margin: const EdgeInsets.symmetric(vertical: 12),
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            height: 30.h,
+                            margin: EdgeInsets.symmetric(vertical: 12.h),
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(16.r),
                               color: AppColors.veryLightGrey,
                             ),
                             child: Text(
                               dateLabel,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: AppColors.black,
+                              style: AppFonts.daySentMessagesFont.copyWith(
                               ),
                             ),
                           ),
@@ -258,24 +263,24 @@ class _MessagesScreenState extends State<MessagesScreen> {
                           return Align(
                             alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              padding: EdgeInsets.symmetric(vertical: 12.h),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   if (!isMe)
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 16),
+                                      padding: EdgeInsets.only(left: 16.w),
                                       child: Transform.translate(
-                                        offset: const Offset(0, 4),
+                                        offset: Offset(0, 4.h),
                                         child: CircleAvatar(
-                                          radius: 26,
+                                          radius: 26.r,
                                           backgroundImage: AssetImage(widget.user.avatarUrl),
                                         ),
                                       ),
                                     )
                                   else
-                                    const SizedBox(width: 48),
+                                    SizedBox(width: 48.w),
                                   Flexible(
                                     child: Column(
                                       crossAxisAlignment: isMe
@@ -287,11 +292,11 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
                                         return Container(
                                             margin: EdgeInsets.only(
-                                              top: index == 0 ? 0 : 4,
-                                              left: isMe ? 48 : 8,
-                                              right: isMe ? 16 : 48,
+                                              top: index == 0 ? 0 : 4.h,
+                                              left: isMe ? 48.w : 8.w,
+                                              right: isMe ? 16.w : 48.w,
                                             ),
-                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                                             decoration: BoxDecoration(
                                               color: isMe ? AppColors.primary : AppColors.darkBlue,
                                               borderRadius: getMessageBorderRadius(isMe, position),
@@ -306,55 +311,49 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                                 Flexible(
                                                   child: Text(
                                                     message.text,
-                                                    style: const TextStyle(color: AppColors.white),
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 8),
+                                              style: AppFonts.userMessagesFont.copyWith(),
+                                                ),),
+                                                SizedBox(width: 8.w),
                                                 if (isMe) ...[
                                                   Text(
                                                     _formatTime(message.timestamp),
-                                                    style: const TextStyle(fontSize: 10, color: AppColors.grey),
+                                                    style: AppFonts.formatTimeMessagesFont.copyWith(),
                                                   ),
-                                                  const SizedBox(width: 4),
+                                                  SizedBox(width: 4.w),
                                                   SvgPicture.asset(
                                                     message.isRead
                                                         ? 'assets/icons/checked_icon.svg'
                                                         : 'assets/icons/check_icon.svg',
-                                                    width: message.isRead ? 24 : 12,
-                                                    height: message.isRead ? 24 : 12,
+                                                    width: message.isRead ? 24.w : 12.w,
+                                                    height: message.isRead ? 24.h : 12.h,
                                                     color: message.isRead ? AppColors.brightBlue : AppColors.grey,
                                                     fit: BoxFit.contain,
                                                   ),
                                                 ] else ...[
                                                   Text(
                                                     _formatTime(message.timestamp),
-                                                    style: const TextStyle(fontSize: 10, color: AppColors.grey),
-                                                  ),
-                                                ],
-                                              ],
+                                                    style: AppFonts.formatTimeMessagesFont.copyWith(),
+                                                  ),],],
                                             ));
                                       }),
                                     ),
-                                  ),
-                                ],
+                                  ),],
                               ),
                             ),
                           );
-                        }),
-                      ],
+                        }),],
                     ),
-                  );
-                },
+                  );},
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 48.h),
               child: Row(
                 children: [
                   Container(
-                    width: 48,
-                    height: 48,
-                    decoration: const BoxDecoration(
+                    width: 48.w,
+                    height: 48.h,
+                    decoration:  BoxDecoration(
                       color: AppColors.primary,
                       shape: BoxShape.circle,
                     ),
@@ -362,21 +361,21 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       child: IconButton(
                         icon: Image.asset(
                           'assets/icons/send_icon.png',
-                          width: 25,
-                          height: 25,
+                          width: 24.w,
+                          height: 24.h,
                         ),
                         padding: EdgeInsets.zero,
                         onPressed: sendMessage,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16.w),
                   Expanded(
                     child: Container(
-                      height: 50,
+                      height: 50.h,
                       decoration: BoxDecoration(
                         color: AppColors.lightPrimaryGrey,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: Row(
                         children: [
@@ -387,16 +386,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               onSubmitted: (_) => sendMessage(),
                               decoration: InputDecoration(
                                 hintText: 'اكتب',
-                                hintStyle: TextStyle(
-                                  color: AppColors.grey,
-                                ),
+                                hintStyle: AppFonts.hintTextBoxFont.copyWith(),
                                 border: InputBorder.none,
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
                               ),
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.add_sharp, color: AppColors.primary, size: 30),
+                            icon: Icon(Icons.add_sharp, color: AppColors.primary, size: 30.sp),
                             onPressed: () async {},
                           ),
                         ],
@@ -415,7 +412,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   String _formatTime(DateTime time) {
     final hour = time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
     final minute = time.minute.toString().padLeft(2, '0');
-    final suffix = time.hour >= 12 ? 'م' : 'ص';
+    final suffix = time.hour >= 12 ? 'pm' : 'am';
     return '$hour:$minute $suffix';
   }
 }

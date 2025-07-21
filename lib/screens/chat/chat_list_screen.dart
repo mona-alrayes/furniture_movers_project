@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'controllers/chat_list_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/core/theme/fonts.dart';
 import 'package:furniture_movers_project/screens/chat/messages_screen.dart';
 import 'controllers/messages_controller.dart';
 
 class ChatListScreen extends StatelessWidget {
-  const ChatListScreen({super.key});
+   ChatListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,32 +16,30 @@ class ChatListScreen extends StatelessWidget {
       create: (context) => ChatListController(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
+          title:  Text(
             'الشات',
-            style: TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.bold,
+            style: AppFonts.appBarFont.copyWith(
             ),
           ),
           backgroundColor: AppColors.white,
-          toolbarHeight: 72,
+          toolbarHeight: 72.h,
           elevation: 1,
           centerTitle: true,
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(2),
+            preferredSize:  Size.fromHeight(2.h),
             child: Container(
-              height: 2,
+              height: 2.h,
               color: AppColors.mediumGrey,
             ),
           ),
         ),
         backgroundColor: AppColors.white,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Consumer<ChatListController>(
             builder: (context, controller, child) {
               return controller.chatUsers.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Center(child: CircularProgressIndicator())
                   : ListView.builder(
                 itemCount: controller.chatUsers.length,
                 itemBuilder: (context, index) {
@@ -63,21 +63,21 @@ class ChatListScreen extends StatelessWidget {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            padding:  EdgeInsets.symmetric(vertical: 4.h),
                             child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
+                              duration:  Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
-                              padding: const EdgeInsets.all(12),
+                              padding:  EdgeInsets.all(12.w),
                               decoration: BoxDecoration(
                                 border: unreadMessagesCount == 0
                                     ? Border(
                                   bottom: BorderSide(
                                     color: AppColors.mediumGrey,
-                                    width: 1,
+                                    width: 1.w,
                                   ),
                                 )
                                     : null,
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                                 color: unreadMessagesCount > 0 ? AppColors.lightPrimaryGrey : AppColors.white,
                               ),
                               child: Row(
@@ -85,48 +85,44 @@ class ChatListScreen extends StatelessWidget {
                                 children: [
                                   if (unreadMessagesCount > 0)
                                     Container(
-                                      padding: const EdgeInsets.all(10),
+                                      padding: EdgeInsets.all(10.w),
                                       decoration: BoxDecoration(
                                         color: AppColors.red,
                                         shape: BoxShape.circle,
                                       ),
                                       child: Text(
                                         unreadMessagesCount.toString(),
-                                        style: const TextStyle(
-                                          fontSize: 10,
+                                        style: TextStyle(
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.bold,
                                           color: AppColors.white,
                                         ),
                                       ),
                                     ),
-                                  const SizedBox(width: 12),
+                                   SizedBox(width: 12.w),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
                                         Text(
                                           user.name,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
+                                          style: AppFonts.fontName.copyWith(
                                           ),
                                           textAlign: TextAlign.right,
                                         ),
-                                        const SizedBox(height: 4),
+                                         SizedBox(height: 4.h),
                                         Text(
                                           lastMessage.text,
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            color: AppColors.grey,
+                                          style: AppFonts.lastMessagesChatFont.copyWith(
                                           ),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(width: 12),
+                                   SizedBox(width: 12.w),
                                   CircleAvatar(
-                                    radius: 28,
+                                    radius: 28.r,
                                     backgroundImage: AssetImage(user.avatarUrl),
                                   ),
                                 ],
