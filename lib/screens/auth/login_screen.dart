@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -6,7 +7,7 @@ import '/core/theme/colors.dart';
 import '/core/widgets/custom_main_button.dart';
 import '../../core/theme/fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/services.dart'; // <-- أضف هذا السطر
+import 'package:furniture_movers_project/screens/auth/loading_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -168,56 +169,55 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 SizedBox(height: 96.h),
 
-                ///  Login Button
-                CustomMainButton(
-                  text: 'تسجيل الدخول',
-                  onPressed: () {
-                    if (_phoneController.text.isNotEmpty &&
-                        _passwordController.text.isNotEmpty) {
-                      Navigator.pushReplacementNamed(context, '/home');
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('يرجى إدخال رقم الهاتف وكلمة المرور'),
-                        ),
-                      );
-                    }
-                  },
-                ),
-                SizedBox(height: 16.h),
-                Align(
-                  alignment: Alignment.center,
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/signUp');
-                        },
-                        child: Text(
-                          'إنشاء جديد',
-                          style: GoogleFonts.almarai(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.primary, // or any other color
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
+              ///  Login Button
+              CustomMainButton(
+                text: 'تسجيل الدخول',
+                onPressed: () {
+                  if (_phoneController.text.isNotEmpty &&
+                      _passwordController.text.isNotEmpty) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('يرجى إدخال رقم الهاتف وكلمة المرور'),
                       ),
-                      Text(
-                        ' ليس لديك حساب؟ ',
+                    );
+                  }
+                },
+              ),
+              SizedBox(height: 16.h),
+              Align(
+                alignment: Alignment.center,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/signUp');
+                      },
+                      child: Text(
+                        'إنشاء جديد',
                         style: GoogleFonts.almarai(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.grey,
+                          color: AppColors.primary, // or any other color
+                          decoration: TextDecoration.underline,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      ' ليس لديك حساب؟ ',
+                      style: GoogleFonts.almarai(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.grey,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
