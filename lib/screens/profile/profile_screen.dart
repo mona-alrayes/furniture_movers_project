@@ -113,6 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               border: Border.all(color: AppColors.regularGrey, width: 1.w),
             ),
             child: AppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
               elevation: 0,
               centerTitle: true,
@@ -136,7 +137,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
+        //bottomNavigationBar: _buildBottomNavigationBar(),
       ),
     );
   }
@@ -248,24 +249,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      backgroundColor: AppColors.white,
-      type: BottomNavigationBarType.fixed,
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() => _currentIndex = index);
-      },
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey,
-      selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
-      unselectedLabelStyle: TextStyle(fontSize: 11.sp),
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'الرئيسية'),
-        BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_outlined), activeIcon: Icon(Icons.receipt_long), label: 'الشات'),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite_border), activeIcon: Icon(Icons.favorite), label: 'المفضلة'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'البروفايل'),
-      ],
-    );
-  }
+  // Widget _buildBottomNavigationBar() {
+  //   return BottomNavigationBar(
+  //     backgroundColor: AppColors.white,
+  //     type: BottomNavigationBarType.fixed,
+  //     currentIndex: _currentIndex,
+  //     onTap: (index) {
+  //       setState(() => _currentIndex = index);
+  //     },
+  //     selectedItemColor: Colors.blue,
+  //     unselectedItemColor: Colors.grey,
+  //     selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+  //     unselectedLabelStyle: TextStyle(fontSize: 11.sp),
+  //     items: const [
+  //       BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'الرئيسية'),
+  //       BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_outlined), activeIcon: Icon(Icons.receipt_long), label: 'الشات'),
+  //       BottomNavigationBarItem(icon: Icon(Icons.favorite_border), activeIcon: Icon(Icons.favorite), label: 'المفضلة'),
+  //       BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'البروفايل'),
+  //     ],
+  //   );
+  // }
 }

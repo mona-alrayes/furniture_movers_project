@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -9,6 +8,8 @@ import '../../core/theme/fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 import 'package:furniture_movers_project/screens/auth/loading_screen.dart';
+import 'package:furniture_movers_project/core/widgets/main_layout.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -94,7 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: TextEditingController(),
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: AppColors.veryLightGrey, // Use your defined grey
+                      fillColor:
+                          AppColors.veryLightGrey, // Use your defined grey
                       border: InputBorder.none,
                     ),
                     initialCountryCode: 'SA',
@@ -176,7 +178,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     if (_phoneController.text.isNotEmpty &&
                         _passwordController.text.isNotEmpty) {
-                      Navigator.pushReplacementNamed(context, '/home');
+                      // استبدل هذا الجزء:
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => LoadingScreen(
+                                message: 'تسجيل الدخول',
+                                targetScreen: const MainLayout(),
+                              ),
+                        ),
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
