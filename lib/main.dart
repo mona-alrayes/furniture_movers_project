@@ -17,6 +17,7 @@ import 'screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
 import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
 import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
