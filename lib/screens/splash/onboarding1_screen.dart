@@ -4,6 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../auth/login_screen.dart';
 import 'onboarding2_screen.dart';
+import 'onboarding3_screen.dart'; 
 
 class OnboardingScreen1 extends StatelessWidget {
   const OnboardingScreen1({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class OnboardingScreen1 extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              // الصورة + زر تخطي يساراً
               Expanded(
                 flex: 5,
                 child: Stack(
@@ -36,16 +36,16 @@ class OnboardingScreen1 extends StatelessWidget {
                     ),
                     Positioned(
                       top: 16.h,
-                      left: 16.w, // جهة اليسار
+                      left: 16.w, 
                       child: TextButton(
                         onPressed: () => Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                          MaterialPageRoute(builder: (_) => const OnboardingScreen3()),
                         ),
                         child: Text(
                           'تخطي',
                           style: GoogleFonts.cairo(
-                            color: Colors.grey,
+                            color: Colors.grey[500],
                             fontSize: 16.sp,
                           ),
                         ),
@@ -95,16 +95,26 @@ class OnboardingScreen1 extends StatelessWidget {
                   width: double.infinity,
                   height: 48.h,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
-                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       padding: EdgeInsets.zero,
                       elevation: 0,
+                      backgroundColor: null,
+                    ).copyWith(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                        (states) => null,
+                      ),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white,
+                      ),
                     ),
                     child: Ink(
                       decoration: const BoxDecoration(

@@ -88,6 +88,14 @@ class OnboardingScreen3 extends StatelessWidget {
                       ),
                       padding: EdgeInsets.zero,
                       elevation: 0,
+                      backgroundColor: null,
+                    ).copyWith(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                        (states) => null,
+                      ),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white,
+                      ),
                     ),
                     child: Ink(
                       decoration: const BoxDecoration(
@@ -119,10 +127,12 @@ class OnboardingScreen3 extends StatelessWidget {
                   width: double.infinity,
                   height: 48.h,
                   child: OutlinedButton(
-                    onPressed: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
-                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(
                         color: Color(0xFF4F8CFF),

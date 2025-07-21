@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
 import 'screens/splash/onboarding2_screen.dart';
@@ -13,9 +13,10 @@ import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
-
-
-
+import 'screens/chat/chat_list_screen.dart';
+import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
+import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
+import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,11 +46,13 @@ class MyApp extends StatelessWidget {
             '/forgetPassword': (_) => const ForgetPasswordScreen(),
             '/restPassword': (_) => const RestPasswordScreen(),
             '/otp': (_) => const OtpScreen(),
-           '/splash': (_) => const SplashScreen(),
-           '/onboarding1': (_) => const OnboardingScreen1(),
-           '/onboarding2': (_) => const OnboardingScreen2(),
-           '/onboarding3': (_) => const OnboardingScreen3(),
-           '/profile': (_) => const ProfileScreen(),
+            '/splash': (_) => const SplashScreen(),
+            '/onboarding1': (_) => const OnboardingScreen1(),
+            '/onboarding2': (_) => const OnboardingScreen2(),
+            '/onboarding3': (_) => const OnboardingScreen3(),
+            '/chat': (_) => const ChatListScreen(),
+            '/TermsAndConditions': (_) => const TermsConditionsScreen(),
+            '/profile': (_) => const ProfileScreen(),
 
           },
         );
@@ -57,3 +60,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
