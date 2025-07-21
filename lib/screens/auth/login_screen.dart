@@ -24,145 +24,150 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: 80.h, left: 24.w, right: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'مرحبًا بعودتك مجدداً ...',
-                  style: GoogleFonts.almarai(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.black,
+    return WillPopScope(
+      onWillPop: () async {
+        SystemNavigator.pop(); // يغلق التطبيق عند الضغط على رجوع
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(top: 80.h, left: 24.w, right: 24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'مرحبًا بعودتك مجدداً ...',
+                    style: GoogleFonts.almarai(
+                      fontSize: 28.sp,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.black,
+                    ),
+                    textDirection: TextDirection.rtl,
                   ),
-                  textDirection: TextDirection.rtl,
                 ),
-              ),
-              SizedBox(height: 16.h),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'فضلاً قم بتسجيل الدخول إلى حسابك',
-                  style: GoogleFonts.poppins(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.grey,
+                SizedBox(height: 16.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'فضلاً قم بتسجيل الدخول إلى حسابك',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.grey,
+                    ),
+                    textDirection: TextDirection.rtl,
                   ),
-                  textDirection: TextDirection.rtl,
                 ),
-              ),
-              SizedBox(height: 40.h),
-              Center(
-                child: Image.asset(
-                  'assets/images/login-image.png',
-                  width: 279.w,
-                  height: 214.h,
-                  fit: BoxFit.cover,
+                SizedBox(height: 40.h),
+                Center(
+                  child: Image.asset(
+                    'assets/images/login-image.png',
+                    width: 279.w,
+                    height: 214.h,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              SizedBox(height: 32.h),
+                SizedBox(height: 32.h),
 
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'رقم التلفون',
-                  style: GoogleFonts.almarai(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.black,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'رقم التلفون',
+                    style: GoogleFonts.almarai(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.black,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 16.h),
+                SizedBox(height: 16.h),
 
-              ///  Phone Input
-              SizedBox(
-                height: 60.h,
-                child: IntlPhoneField(
-                  controller: TextEditingController(),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: AppColors.veryLightGrey, // Use your defined grey
-                    border: InputBorder.none,
-                  ),
-                  initialCountryCode: 'SA',
-                  onChanged: (phone) {
-                    _phoneController.text = phone.completeNumber;
-                  },
-                  textAlign: TextAlign.left,
-                  showCountryFlag: true,
-                ),
-              ),
-              SizedBox(height: 24.h),
-
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'كلمة المرور',
-                  style: GoogleFonts.almarai(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.black,
+                ///  Phone Input
+                SizedBox(
+                  height: 60.h,
+                  child: IntlPhoneField(
+                    controller: TextEditingController(),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: AppColors.veryLightGrey, // Use your defined grey
+                      border: InputBorder.none,
+                    ),
+                    initialCountryCode: 'SA',
+                    onChanged: (phone) {
+                      _phoneController.text = phone.completeNumber;
+                    },
+                    textAlign: TextAlign.left,
+                    showCountryFlag: true,
                   ),
                 ),
-              ),
-              SizedBox(height: 16.h),
+                SizedBox(height: 24.h),
 
-              ///  Password Input
-              SizedBox(
-                height: 48.h,
-                child: TextField(
-                  controller: _passwordController,
-                  obscureText: _obscurePassword,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(color: AppColors.grey),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: AppColors.veryLightGrey,
-                    border: InputBorder.none,
-                    prefixIcon: IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: AppColors.grey,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'كلمة المرور',
+                    style: GoogleFonts.almarai(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+
+                ///  Password Input
+                SizedBox(
+                  height: 48.h,
+                  child: TextField(
+                    controller: _passwordController,
+                    obscureText: _obscurePassword,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: AppColors.grey),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: AppColors.veryLightGrey,
+                      border: InputBorder.none,
+                      prefixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: AppColors.grey,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
                       ),
-                      onPressed: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                    ),
-                    suffixIcon: Padding(
-                      padding: EdgeInsets.all(11.0),
-                      child: SvgPicture.asset('assets/icons/lock-open.svg'),
+                      suffixIcon: Padding(
+                        padding: EdgeInsets.all(11.0),
+                        child: SvgPicture.asset('assets/icons/lock-open.svg'),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 8.h),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, '/forgetPassword');
-                },
-                child: Text(
-                  'نسيت كلمة المرور؟',
-                  style: GoogleFonts.almarai(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.grey,
-                    decoration: TextDecoration.none,
+                SizedBox(height: 8.h),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/forgetPassword');
+                  },
+                  child: Text(
+                    'نسيت كلمة المرور؟',
+                    style: GoogleFonts.almarai(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.grey,
+                      decoration: TextDecoration.none,
+                    ),
                   ),
                 ),
-              ),
 
-              SizedBox(height: 96.h),
+                SizedBox(height: 96.h),
 
               ///  Login Button
               CustomMainButton(
@@ -170,17 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   if (_phoneController.text.isNotEmpty &&
                       _passwordController.text.isNotEmpty) {
-                    // استبدل هذا الجزء:
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder:
-                            (context) => LoadingScreen(
-                              message: 'تسجيل الدخول',
-                              targetScreen: const HomeScreen(),
-                            ),
-                      ),
-                    );
+                    Navigator.pushReplacementNamed(context, '/home');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

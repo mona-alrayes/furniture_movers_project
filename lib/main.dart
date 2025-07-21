@@ -11,6 +11,7 @@ import 'screens/auth/otp_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/home/home_screen.dart';
+import 'package:flutter/services.dart';
 import 'screens/profile/profile_screen.dart';
 import 'screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
             '/onboarding3': (_) => const OnboardingScreen3(),
             '/chat': (_) => const ChatListScreen(),
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
+            '/profile': (_) => const ProfileScreen(),
 
           },
         );
