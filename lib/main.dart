@@ -7,7 +7,6 @@ import 'screens/splash/onboarding2_screen.dart';
 import 'screens/splash/onboarding3_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/forget_password_screen.dart';
-import 'screens/auth/logging_screen.dart';
 import 'screens/auth/otp_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
