@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/home_screen.dart';
+import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
+import 'package:furniture_movers_project/screens/profile/profile_screen.dart';
+
 
 class MainLayout extends StatefulWidget {
   final int initialIndex;
@@ -16,10 +19,11 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   late int _currentIndex;
 
-  final List<Widget> _screens = const [
+  final List<Widget> _screens =  [
     HomeScreen(),
     ChatListScreen(),
-    // ... أضف باقي الشاشات هنا
+    FavoritesScreen(),
+    ProfileScreen(),
   ];
 
   @override

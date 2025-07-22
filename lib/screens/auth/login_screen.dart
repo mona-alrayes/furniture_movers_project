@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (_phoneController.text.isNotEmpty &&
                         _passwordController.text.isNotEmpty) {
                       // استبدل هذا الجزء:
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder:
