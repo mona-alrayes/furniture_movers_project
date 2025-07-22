@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:furniture_movers_project/core/theme/colors.dart';
-import '../../screens/favorite/favorite_screen.dart';
-import '../../screens/profile/profile_screen.dart';
-import '../../screens/chat/chat_list_screen.dart';
-import '../../screens/home/home_screen.dart';
-import '../../screens/profile/profile_screen.dart';
-import '../../screens/favorite/favorite_screen.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
+import 'package:furniture_movers_project/screens/home/home_screen.dart';
+import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
+import 'package:furniture_movers_project/screens/profile/profile_screen.dart';
+
 
 class MainLayout extends StatefulWidget {
-  const MainLayout({super.key});
+  final int initialIndex;
+
+  const MainLayout({super.key, this.initialIndex = 0});
 
   @override
   State<MainLayout> createState() => _MainLayoutState();
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  int _currentIndex = 0;
+  late int _currentIndex;
 
-
-  final List<Widget> _screens = const [
+  final List<Widget> _screens =  [
     HomeScreen(),
     ChatListScreen(),
     FavoritesScreen(),
     ProfileScreen(),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -56,9 +60,8 @@ class _MainLayoutState extends State<MainLayout> {
             currentIndex: _currentIndex,
             onTap: _onItemTapped,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
-            selectedItemColor: AppColors.primary,
-            unselectedItemColor: AppColors.grey,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
             selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
             unselectedLabelStyle: TextStyle(fontSize: 12.sp),
             items: [
@@ -68,20 +71,27 @@ class _MainLayoutState extends State<MainLayout> {
                 label: 'الرئيسية',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/icons/Frame.svg',
-                  width: 24.w,
-                  height: 24.h,
-                  colorFilter: ColorFilter.mode(
-                    _currentIndex == 1 ? AppColors.primary : AppColors.grey,
+                icon: ColorFiltered(
+                  colorFilter: const ColorFilter.mode(
+                    Colors.grey,
                     BlendMode.srcIn,
                   ),
+                  child: Image.asset(
+                    'assets/icons/Chat.png',
+                    width: 24.w,
+                    height: 24.h,
+                  ),
                 ),
-                activeIcon: SvgPicture.asset(
-                  'assets/icons/chat_filled.svg',
-                  width: 24.w,
-                  height: 24.h,
-                  colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+                activeIcon: ColorFiltered(
+                  colorFilter: const ColorFilter.mode(
+                    Colors.blue, // اللون عند التفعيل
+                    BlendMode.srcIn,
+                  ),
+                  child: Image.asset(
+                    'assets/icons/Chat.png',
+                    width: 24.w,
+                    height: 24.h,
+                  ),
                 ),
                 label: 'الشات',
               ),
