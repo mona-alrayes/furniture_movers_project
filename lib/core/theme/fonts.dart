@@ -58,7 +58,47 @@ class AppFonts {
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
+  //Contact Us screen
+  static TextStyle contactUsFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primary,
+  );
+  // About App screen
+  static TextStyle aboutAppTitle1FormFont = GoogleFonts.almarai(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
 
+  static TextStyle aboutAppHedarFormFont = GoogleFonts.almarai(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
+  static TextStyle aboutAppBodyFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
+  );
+  //كلمه خدماتك
+  static TextStyle aboutAppTitle2FormFont = GoogleFonts.tajawal(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w800,
+    color: AppColors.primary,
+  );
+  // term&conddition screen
+  static TextStyle termCondTitleFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
+
+  static TextStyle termCondBodyFormFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.grey,
+  );
   // home screen fonts
 
   // service screens fonts
@@ -75,5 +115,44 @@ class AppFonts {
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.black,
+  );
+
+
+  //chat screens fonts
+
+  static TextStyle lastMessagesChatFont = GoogleFonts.almarai(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.grey,
+  );
+  static TextStyle mainNameChatMessagesFont = GoogleFonts.almarai(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.paltteBlack,
+  );
+  static TextStyle statueConectionChatMessagesFont = GoogleFonts.almarai(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.green,
+  );
+  static TextStyle daySentMessagesFont = GoogleFonts.almarai(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+  );
+  static TextStyle userMessagesFont = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w300,
+    color: AppColors.white,
+  );
+  static TextStyle formatTimeMessagesFont = GoogleFonts.poppins(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.grey,
+  );
+  static TextStyle hintTextBoxFont = GoogleFonts.poppins(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
   );
 }

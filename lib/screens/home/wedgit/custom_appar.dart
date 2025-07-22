@@ -15,9 +15,10 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       automaticallyImplyLeading: false,
       title: Padding(
-        padding: EdgeInsets.only(top: 8.0.h), // تنسيق رأسي خفيف
+        padding: EdgeInsets.only(top: 8.0.h),
         child: Row(
           children: [
+
             InkWell(onTap: (){
               Navigator.of(context).push(
   MaterialPageRoute(
@@ -25,12 +26,14 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
   ),
 );
             },
+
               child: CircleAvatar(
                 radius: 22.r,
                 backgroundImage: AssetImage('assets/images/profile.jpg'),
               ),
             ),
             SizedBox(width: 8.w),
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,6 +65,7 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
             ),
+
             Stack(
               children: [
                 Icon(Icons.notifications_none, color: Colors.black, size: 24.r),

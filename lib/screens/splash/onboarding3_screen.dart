@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'onboarding2_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../auth/login_screen.dart';
+import 'onboarding2_screen.dart';
 
 class OnboardingScreen3 extends StatelessWidget {
   const OnboardingScreen3({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -17,57 +17,55 @@ class OnboardingScreen3 extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24.0,
-                  vertical: 8,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [],
-                ),
-              ),
-              Center(
-                child: Container(
-                  width: 400,
-                  height: 400,
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/images/w3.png.png',
-                      width: 400,
-                      height: 400,
-                      fit: BoxFit.cover,
+              Expanded(
+                flex: 5,
+                child: Stack(
+                  children: [
+                    SizedBox.expand(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(500.r),
+                          bottomRight: Radius.circular(500.r),
+                        ),
+                        child: Image.asset(
+                          'assets/images/w3.png.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
+                    // تم حذف زر التخطي من هنا
+                  ],
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               SmoothPageIndicator(
                 controller: _FakePageController(2),
                 count: 3,
-                effect: WormEffect(
-                  dotColor: Colors.grey[300]!,
+                effect: ExpandingDotsEffect(
+                  expansionFactor: 4,
+                  dotHeight: 8.h,
+                  dotWidth: 8.w,
+                  spacing: 4.w,
+                  dotColor: Colors.grey.shade300,
                   activeDotColor: const Color(0xFF4F8CFF),
-                  dotHeight: 8,
-                  dotWidth: 8,
                 ),
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
               Text(
-                'سهولة وسرعة في كل خطوة',
+                'راحة بالك هي أولويتنا',
                 style: GoogleFonts.cairo(
-                  fontSize: 24,
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Text(
-                  'من الحجز إلى التنفيذ، نضمن لك تجربة سريعة، بسيطة، وفعالة.',
+                  'خدمة عملاء سريعة وداعمة على مدار الساعة لراحتك ورضاك التام.',
                   style: GoogleFonts.cairo(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     color: Colors.grey[500],
                   ),
                   textAlign: TextAlign.center,
@@ -75,47 +73,46 @@ class OnboardingScreen3 extends StatelessWidget {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 48,
+                  height: 48.h,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => const LoginScreen()),
-                      );
-                    },
+                    onPressed: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                       padding: EdgeInsets.zero,
                       elevation: 0,
                       backgroundColor: null,
                     ).copyWith(
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith<Color?>(
-                            (states) => null,
-                          ),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                        (states) => null,
+                      ),
                       foregroundColor: MaterialStateProperty.all<Color>(
                         Colors.white,
                       ),
                     ),
                     child: Ink(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
                           colors: [Color(0xFF4B75CB), Color(0xFF4999CB)],
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
-                      child: Container(
-                        alignment: Alignment.center,
+                      child: Center(
                         child: Text(
-                          'ابدأ',
+                          'التالي',
                           style: GoogleFonts.cairo(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -123,19 +120,17 @@ class OnboardingScreen3 extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: SizedBox(
                   width: double.infinity,
-                  height: 48,
+                  height: 48.h,
                   child: OutlinedButton(
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => const OnboardingScreen2(),
-                        ),
+                        MaterialPageRoute(builder: (_) => const OnboardingScreen2()),
                       );
                     },
                     style: OutlinedButton.styleFrom(
@@ -144,13 +139,13 @@ class OnboardingScreen3 extends StatelessWidget {
                         width: 1.5,
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.r),
                       ),
                     ),
                     child: Text(
                       'رجوع',
                       style: GoogleFonts.cairo(
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         color: const Color(0xFF4F8CFF),
                         fontWeight: FontWeight.bold,
                       ),
@@ -158,7 +153,7 @@ class OnboardingScreen3 extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
             ],
           ),
         ),
@@ -170,7 +165,6 @@ class OnboardingScreen3 extends StatelessWidget {
 class _FakePageController extends PageController {
   final int fixedIndex;
   _FakePageController(this.fixedIndex);
-
   @override
   double get page => fixedIndex.toDouble();
 }
