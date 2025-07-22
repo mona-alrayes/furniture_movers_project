@@ -15,7 +15,7 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [HomeScreen(), ChatListScreen()];
+  final List<Widget> _screens =  [HomeScreen(), ChatListScreen()];
 
   void _onItemTapped(int index) {
     setState(() {

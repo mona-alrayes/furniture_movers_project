@@ -16,6 +16,7 @@ class ChatListScreen extends StatelessWidget {
       create: (context) => ChatListController(),
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title:  Text(
             'الشات',
             style: AppFonts.appBarFont.copyWith(
