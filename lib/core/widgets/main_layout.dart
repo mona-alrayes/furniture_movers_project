@@ -23,7 +23,7 @@ class _MainLayoutState extends State<MainLayout> {
   final List<Widget> _screens = const [
     HomeScreen(),
     ChatListScreen(),
-    FavoriteScreen(),
+    FavoritesScreen(),
     ProfileScreen(),
   ];
 
