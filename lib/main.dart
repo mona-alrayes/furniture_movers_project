@@ -10,14 +10,14 @@ import 'screens/auth/forget_password_screen.dart';
 import 'screens/auth/otp_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
-import 'screens/home/home_screen.dart';
-import 'package:flutter/services.dart';
 import 'screens/profile/profile_screen.dart';
 import 'screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
 import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
 import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
-import 'package:flutter/services.dart';
+import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
+import 'package:furniture_movers_project/core/widgets/main_layout.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/splash',
           routes: {
             '/login': (_) => const LoginScreen(),
-            '/home': (_) => const HomeScreen(),
+            '/home': (_) => const MainLayout(),
             '/signUp': (_) => const SignUpScreen(),
             '/forgetPassword': (_) => const ForgetPasswordScreen(),
             '/restPassword': (_) => const RestPasswordScreen(),
@@ -51,10 +51,10 @@ class MyApp extends StatelessWidget {
             '/onboarding1': (_) => const OnboardingScreen1(),
             '/onboarding2': (_) => const OnboardingScreen2(),
             '/onboarding3': (_) => const OnboardingScreen3(),
-            '/chat': (_) => const ChatListScreen(),
+            '/chat': (_) =>  ChatListScreen(),
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
             '/profile': (_) => const ProfileScreen(),
-
+            '/favorite': (_) => const FavoriteScreen(),
           },
         );
       },

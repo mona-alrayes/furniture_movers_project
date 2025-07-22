@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:furniture_movers_project/core/theme/colors.dart';
+import '../../screens/favorite/favorite_screen.dart';
+import '../../screens/profile/profile_screen.dart';
 import '../../screens/chat/chat_list_screen.dart';
 import '../../screens/home/home_screen.dart';
 
@@ -15,7 +17,12 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [HomeScreen(), ChatListScreen()];
+  final List<Widget> _screens = [
+    HomeScreen(),
+    ChatListScreen(),
+    FavoriteScreen(),
+    ProfileScreen(),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -45,8 +52,9 @@ class _MainLayoutState extends State<MainLayout> {
             currentIndex: _currentIndex,
             onTap: _onItemTapped,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
+            backgroundColor: Colors.white,
+            selectedItemColor: AppColors.primary,
+            unselectedItemColor: AppColors.grey,
             selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
             unselectedLabelStyle: TextStyle(fontSize: 12.sp),
             items: [
@@ -60,11 +68,16 @@ class _MainLayoutState extends State<MainLayout> {
                   'assets/icons/Frame.svg',
                   width: 24.w,
                   height: 24.h,
+                  colorFilter: ColorFilter.mode(
+                    _currentIndex == 1 ? AppColors.primary : AppColors.grey,
+                    BlendMode.srcIn,
+                  ),
                 ),
                 activeIcon: SvgPicture.asset(
                   'assets/icons/chat_filled.svg',
                   width: 24.w,
                   height: 24.h,
+                  colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
                 ),
                 label: 'الشات',
               ),

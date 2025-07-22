@@ -8,7 +8,7 @@ import 'package:furniture_movers_project/screens/chat/messages_screen.dart';
 import 'controllers/messages_controller.dart';
 
 class ChatListScreen extends StatelessWidget {
-   ChatListScreen({super.key});
+  ChatListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +17,17 @@ class ChatListScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title:  Text(
+          title: Text(
             'الشات',
-            style: AppFonts.appBarFont.copyWith(
-            ),
+            style: AppFonts.appBarFont,
           ),
           backgroundColor: AppColors.white,
           toolbarHeight: 72.h,
           elevation: 1,
           centerTitle: true,
           bottom: PreferredSize(
-            preferredSize:  Size.fromHeight(2.h),
-            child: Container(
-              height: 2.h,
-              color: AppColors.mediumGrey,
-            ),
+            preferredSize: Size.fromHeight(2.h),
+            child: Container(height: 2.h, color: AppColors.mediumGrey),
           ),
         ),
         backgroundColor: AppColors.white,
@@ -40,7 +36,7 @@ class ChatListScreen extends StatelessWidget {
           child: Consumer<ChatListController>(
             builder: (context, controller, child) {
               return controller.chatUsers.isEmpty
-                  ? Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(
                 itemCount: controller.chatUsers.length,
                 itemBuilder: (context, index) {
@@ -64,9 +60,9 @@ class ChatListScreen extends StatelessWidget {
                             );
                           },
                           child: Padding(
-                            padding:  EdgeInsets.symmetric(vertical: 4.h),
+                            padding: EdgeInsets.symmetric(vertical: 4.h),
                             child: AnimatedContainer(
-                              duration:  Duration(milliseconds: 300),
+                              duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                               padding:  EdgeInsets.all(12.w),
                               decoration: BoxDecoration(
@@ -79,11 +75,37 @@ class ChatListScreen extends StatelessWidget {
                                 )
                                     : null,
                                 borderRadius: BorderRadius.circular(10.r),
-                                color: unreadMessagesCount > 0 ? AppColors.lightPrimaryGrey : AppColors.white,
+                                color: unreadMessagesCount > 0
+                                    ? AppColors.lightPrimaryGrey
+                                    : AppColors.white,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
+                                  CircleAvatar(
+                                    radius: 28.r,
+                                    backgroundImage: AssetImage(user.avatarUrl),
+                                  ),
+                                  SizedBox(width: 12.w),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          user.name,
+                                          style: AppFonts.fontName,
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        SizedBox(height: 4.h),
+                                        Text(
+                                          lastMessage.text,
+                                          style: AppFonts.lastMessagesChatFont,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(width: 12.w),
                                   if (unreadMessagesCount > 0)
                                     Container(
                                       padding: EdgeInsets.all(10.w),
@@ -100,32 +122,6 @@ class ChatListScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                   SizedBox(width: 12.w),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          user.name,
-                                          style: AppFonts.fontName.copyWith(
-                                          ),
-                                          textAlign: TextAlign.right,
-                                        ),
-                                         SizedBox(height: 4.h),
-                                        Text(
-                                          lastMessage.text,
-                                          style: AppFonts.lastMessagesChatFont.copyWith(
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                   SizedBox(width: 12.w),
-                                  CircleAvatar(
-                                    radius: 28.r,
-                                    backgroundImage: AssetImage(user.avatarUrl),
-                                  ),
                                 ],
                               ),
                             ),
