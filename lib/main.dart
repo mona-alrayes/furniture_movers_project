@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';

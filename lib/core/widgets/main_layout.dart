@@ -6,6 +6,8 @@ import '../../screens/favorite/favorite_screen.dart';
 import '../../screens/profile/profile_screen.dart';
 import '../../screens/chat/chat_list_screen.dart';
 import '../../screens/home/home_screen.dart';
+import '../../screens/profile/profile_screen.dart';
+import '../../screens/favorite/favorite_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -17,12 +19,13 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
+  final List<Widget> _screens = const [
     HomeScreen(),
     ChatListScreen(),
     FavoriteScreen(),
     ProfileScreen(),
   ];
+
 
   void _onItemTapped(int index) {
     setState(() {
