@@ -21,6 +21,7 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: "تواصل بنا"),
       body: Padding(
         padding: EdgeInsets.only(top: 24.h, right: 24.w, left: 24.w),

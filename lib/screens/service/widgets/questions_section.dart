@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_movers_project/core/theme/colors.dart';
 
 class QuestionsSection extends StatelessWidget {
   const QuestionsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // بيانات وهمية للأسئلة
     final questions = [
       {
         'user': 'عبدالله محمد',
@@ -25,7 +25,6 @@ class QuestionsSection extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        // حقل إدخال سؤال وزر إرسال
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Row(
@@ -57,18 +56,30 @@ class QuestionsSection extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                   color: Color(0xFF3B5BA9),
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(56),
                 ),
-                child: const Icon(Icons.send, color: Colors.white),
+                child: Image.asset(
+                  'assets/icons/send-2.png',
+                  width: 4,
+                  height: 4,
+                  color: AppColors.white,
+                ),
               ),
             ],
           ),
         ),
-        // شريط الترتيب وعدد الأسئلة
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
           child: Row(
             children: [
+              Text(
+                '2 أسئلة',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const Spacer(),
               DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
                   value: 'ترتيب',
@@ -87,18 +98,9 @@ class QuestionsSection extends StatelessWidget {
                   dropdownColor: Colors.white,
                 ),
               ),
-              const Spacer(),
-              Text(
-                '2 أسئلة',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
             ],
           ),
         ),
-        // قائمة الأسئلة
         Expanded(
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -117,26 +119,33 @@ class QuestionsSection extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          q['user'] as String,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const Spacer(),
                         const Icon(
                           Icons.person_outline,
                           size: 20,
                           color: Color(0xFFB1B1B1),
                         ),
-                        const SizedBox(width: 4),
-                        Text(
-                          q['time'] as String,
-                          style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 13,
-                          ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              q['user'] as String,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              q['time'] as String,
+                              style: TextStyle(
+                                color: Colors.grey[400],
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 8),
                     Text(
                       q['text'] as String,

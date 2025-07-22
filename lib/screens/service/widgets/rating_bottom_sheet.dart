@@ -60,6 +60,7 @@ void showRatingBottomSheet(BuildContext context) {
                 TextField(
                   controller: commentController,
                   maxLines: 4,
+                  textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     hintText: 'اكتب تعليق',
                     hintStyle: TextStyle(color: Colors.grey),

@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_movers_project/core/theme/colors.dart';
 
-class RatingSection extends StatelessWidget {
+class RatingSection extends StatefulWidget {
   const RatingSection({Key? key}) : super(key: key);
+
+  @override
+  State<RatingSection> createState() => _RatingSectionState();
+}
+
+class _RatingSectionState extends State<RatingSection> {
+  int rating = 4;
 
   @override
   Widget build(BuildContext context) {
     const Color mainBlue = Color(0xFF3B5BA9);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -14,53 +23,20 @@ class RatingSection extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
+            textDirection: TextDirection.rtl,
             children: [
-              // التقييم العددي والنجوم
-              Padding(
-                padding: const EdgeInsets.only(right: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      '4.5',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: List.generate(5, (index) {
-                        return Icon(
-                          Icons.star,
-                          color: Color(0xFFFFC107),
-                          size: 24,
-                        );
-                      }),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '36 تقييم',
-                      style: TextStyle(
-                        color: Colors.grey.shade500,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // أشرطة التقييم
+              // العمود الأيسر (النسب)
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 24),
+                  padding: const EdgeInsets.only(right: 6),
                   child: Column(
                     children:
                         [
-                          {'label': '5 نجوم', 'percent': 0.6},
-                          {'label': '4 نجوم', 'percent': 0.2},
-                          {'label': '3 نجوم', 'percent': 0.1},
-                          {'label': '2 نجوم', 'percent': 0.1},
-                          {'label': '1 نجمة', 'percent': 0.05},
+                          {'percent': 0.6, 'label': '5 نجوم'},
+                          {'percent': 0.2, 'label': '4 نجوم'},
+                          {'percent': 0.1, 'label': '3 نجوم'},
+                          {'percent': 0.1, 'label': '2 نجوم'},
+                          {'percent': 0.05, 'label': '1 نجمة'},
                         ].map((r) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 12),
@@ -81,7 +57,7 @@ class RatingSection extends StatelessWidget {
                                       Container(
                                         height: 8,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFE9F0FB),
+                                          color: const Color(0xFFE9F0FB),
                                           borderRadius: BorderRadius.circular(
                                             6,
                                           ),
@@ -115,6 +91,52 @@ class RatingSection extends StatelessWidget {
                           );
                         }).toList(),
                   ),
+                ),
+              ),
+
+              // العمود الأيمن (التقييم والنجوم)
+              Padding(
+                padding: const EdgeInsets.only(left: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '4.5',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(5, (index) {
+                          return IconButton(
+                            icon: Icon(
+                              index < rating ? Icons.star : Icons.star_border,
+                              color: AppColors.yellow,
+                              size: 20,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                rating = index + 1;
+                              });
+                            },
+                          );
+                        }),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '36 تقييم',
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

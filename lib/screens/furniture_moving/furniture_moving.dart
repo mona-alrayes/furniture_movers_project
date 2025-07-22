@@ -58,28 +58,29 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
                   style: GoogleFonts.almarai(fontWeight: FontWeight.w800),
                 ),
                 centerTitle: true,
-                leading: InkWell(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, '/homescreen');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(3), // مساحة داخلية حول الأيقونة
-                    decoration: BoxDecoration(
-                      color: Colors.white, // اختر اللون المناسب للخلفية
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.grey, // لون الحدود الذي تريده
-                        width: 1.5, // سماكة الحدود
-                      ), // زاوية دائرية
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
+                leading: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 5.w,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      width: 40.w,
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.regularGrey,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
                       child: Icon(
-                        Icons.arrow_back_ios_new_rounded,
+                        Icons.arrow_forward_ios,
+                        size: 18.sp,
                         color: AppColors.grey,
-                        size: 20, // حجم الأيقونة حسب الحاجة
                       ),
                     ),
                   ),

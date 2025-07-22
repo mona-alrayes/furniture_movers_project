@@ -19,6 +19,7 @@ class AppColors {
   static const darkBlue = Color(0xFF00246D); //done
   static const brightBlue = Color(0xFF00B5EE); //done
   static const blackPro = Color(0xFF1E1E1E); //done
+  static const paltteBlack = Color(0xFF303030); //done
 
   static const LinearGradient linears = LinearGradient(
     colors: [
