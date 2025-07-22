@@ -25,7 +25,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         child: AppBar(
-          automaticallyImplyLeading: false,
+         automaticallyImplyLeading: false,
+
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,

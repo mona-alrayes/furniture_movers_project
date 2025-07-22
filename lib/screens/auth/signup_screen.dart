@@ -10,7 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:furniture_movers_project/screens/auth/loading_screen.dart';
-import 'package:furniture_movers_project/screens/home/home_screen.dart';
+import 'package:furniture_movers_project/screens/auth/login_screen.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -44,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         MaterialPageRoute(
           builder: (context) => LoadingScreen(
             message: 'انشاء حساب',
-            targetScreen: const HomeScreen(),
+            targetScreen: const LoginScreen(),
           ),
         ),
       );
