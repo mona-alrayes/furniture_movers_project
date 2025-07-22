@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/controllers/user_controller.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_appar.dart';
-import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar%20.dart';
+import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar .dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/service.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/slidar.dart';
-import 'package:furniture_movers_project/core/widgets/main_layout.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -94,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-
       ),
     );
   }
 }
+

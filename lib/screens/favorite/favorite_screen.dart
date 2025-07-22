@@ -5,15 +5,14 @@ import '/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_workers.dart';
 
-class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({super.key });
-  
+class FavoritesScreen extends StatefulWidget {
+  const FavoritesScreen({super.key});
 
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
+class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     final favorites = FavoriteWorkers.favorites;
@@ -45,33 +44,32 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ),
         ),
       ),
-      body:
-          favorites.isEmpty
-              ? Center(
-                child: Text(
-                  "لا يوجد عناصر مفضلة",
-                  style: GoogleFonts.almarai(fontSize: 18.sp),
-                ),
-              )
-              : ListView.separated(
-                padding: EdgeInsets.all(16.w),
-                itemCount: favorites.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
-                itemBuilder: (context, index) {
-                  final worker = favorites[index];
-                  return WorkerCard(
-                    name: worker.name,
-                    jobTitle: worker.jobTitle,
-                    imagePath: worker.imagePath,
-                    rating: worker.rating,
-                    onFavoritePressed: () {
-                      setState(() {
-                        FavoriteWorkers.removeFromFavorites(worker);
-                      });
-                    },
-                  );
-                },
+      body: favorites.isEmpty
+          ? Center(
+              child: Text(
+                "لا يوجد عناصر مفضلة",
+                style: GoogleFonts.almarai(fontSize: 18.sp),
               ),
+            )
+          : ListView.separated(
+              padding: EdgeInsets.all(16.w),
+              itemCount: favorites.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 8),
+              itemBuilder: (context, index) {
+                final worker = favorites[index];
+                return WorkerCard(
+                  name: worker.name,
+                  jobTitle: worker.jobTitle,
+                  imagePath: worker.imagePath,
+                  rating: worker.rating,
+                  onFavoritePressed: () {
+                    setState(() {
+                      FavoriteWorkers.removeFromFavorites(worker);
+                    });
+                  },
+                );
+              },
+            ),
     );
   }
 }
