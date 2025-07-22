@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furniture_movers_project/screens/profile/profile_screen.dart';
 
 class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBarHome({super.key});
@@ -17,9 +18,17 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
         padding: EdgeInsets.only(top: 8.0.h), // تنسيق رأسي خفيف
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 22.r,
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
+            InkWell(onTap: (){
+              Navigator.of(context).push(
+  MaterialPageRoute(
+    builder: (context) => ProfileScreen(),
+  ),
+);
+            },
+              child: CircleAvatar(
+                radius: 22.r,
+                backgroundImage: AssetImage('assets/images/profile.jpg'),
+              ),
             ),
             SizedBox(width: 8.w),
             Expanded(

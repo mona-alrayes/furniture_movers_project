@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_button_hajz.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WorkerCard extends StatelessWidget {
@@ -53,12 +54,13 @@ class WorkerCard extends StatelessWidget {
               width: 140,
               height: 140,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                width: 140,
-                height: 140,
-                color: Colors.grey[300],
-                child: Icon(Icons.person, size: 50),
-              ),
+              errorBuilder:
+                  (context, error, stackTrace) => Container(
+                    width: 140,
+                    height: 140,
+                    color: Colors.grey[300],
+                    child: Icon(Icons.person, size: 50),
+                  ),
             ),
           ),
           Positioned(
@@ -112,13 +114,13 @@ class WorkerCard extends StatelessWidget {
               itemCount: 5,
               itemSize: 20,
               itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-              itemBuilder: (context, _) =>
-                  const Icon(Icons.star, color: Colors.amber),
+              itemBuilder:
+                  (context, _) => const Icon(Icons.star, color: Colors.amber),
               onRatingUpdate: (rating) {
                 print('تم التقييم: $rating');
               },
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 16.h),
             // ElevatedButton(onPressed: () {}, child: Text("احجز الأن")),
             CustomBttonHajz(text: "أحجز الأن", onPressed: () {}),
           ],
@@ -142,14 +144,21 @@ class WorkersList extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(height: 4),
       itemBuilder: (context, index) {
         final worker = workers[index];
-        return WorkerCard(
-          name: worker.name,
-          jobTitle: worker.jobTitle,
-          imagePath: worker.imagePath,
-          rating: worker.rating,
-          onFavoritePressed: () {
-            print('تم إضافة ${worker.name} إلى المفضلة');
+        return InkWell(
+          onTap: () {
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (context) => FurnitureMoving()));
           },
+          child: WorkerCard(
+            name: worker.name,
+            jobTitle: worker.jobTitle,
+            imagePath: worker.imagePath,
+            rating: worker.rating,
+            onFavoritePressed: () {
+              print('تم إضافة ${worker.name} إلى المفضلة');
+            },
+          ),
         );
       },
     );

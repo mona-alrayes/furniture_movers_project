@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import './widgets/details_section.dart';
-import './widgets/rating_section.dart';
-import './widgets/rating_bottom_sheet.dart';
-import './widgets/questions_section.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
+import 'package:furniture_movers_project/screens/service/widgets/details_section.dart';
+import 'package:furniture_movers_project/screens/service/widgets/questions_section.dart';
+import 'package:furniture_movers_project/screens/service/widgets/rating_bottom_sheet.dart';
+import 'package:furniture_movers_project/screens/service/widgets/rating_section.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
   const ServiceDetailsScreen({Key? key}) : super(key: key);
@@ -12,130 +16,112 @@ class ServiceDetailsScreen extends StatefulWidget {
 }
 
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
-  int selectedTab = 0; // 0: تفاصيل، 1: تقييم، 2: أسئلة
+  int selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {
-    const double screenWidth = 428;
-    const double screenHeight = 926;
-    const double bannerTop = 88;
-    const double bannerLeft = 16;
-    const double bannerWidth = 396;
-    const double bannerHeight = 114;
-    const double bannerRadius = 16;
-    const double profileSize = 96;
-    const double profileBorder = 6;
-    const double profileTop = 140;
-    const double profileRight = 45;
-    const double tabBarTop = 265; // ✅ الجديد
-
-    // const double tabBarTop = 247;
-    const double tabBarHeight = 48;
-    const double tabBarRadius = 20;
-    const double tabActiveRadius = 10;
-    const double tabFontSize = 16;
     const Color mainBlue = Color(0xff4B75CB);
     const Color blueservice = Color(0xff4A87CB);
     const Color tabInactive = Color(0xFFF7F8FA);
-    const Color tabActive = mainBlue;
     const Color tabInactiveText = Color(0xFFB1B1B1);
     const Color dividerColor = Color(0xFFF1F1F1);
-    const String profileImageAsset = 'assets/images/cat1.jpg';
+    const String profileImageAsset = 'assets/images/005.jpg';
 
-    // const String profileImageUrl =
-    //     'https://randomuser.me/api/portraits/men/32.jpg';
-    const String? patternAsset = null;
-
-    Widget questionsContent = const QuestionsSection();
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Container(
-          width: screenWidth,
-          height: screenHeight,
-          color: Colors.white,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: CustomAppBar(title: "معلومات الفني"),
+        // appBar: PreferredSize(
+        //   preferredSize: Size.fromHeight(56.h),
+        //   child: Container(
+        //     decoration: BoxDecoration(
+        //       color: AppColors.white,
+        //       border: Border(
+        //         bottom: BorderSide(color: AppColors.regularGrey, width: 1),
+        //       ),
+        //     ),
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(4.0),
+        //       child: AppBar(
+        //         backgroundColor: Colors.transparent,
+        //         elevation: 0,
+        //         title: Text(
+        //           "نقل أثاث",
+        //           style: GoogleFonts.almarai(fontWeight: FontWeight.w800),
+        //         ),
+        //         centerTitle: true,
+        //         leading: Padding(
+        //           padding: EdgeInsets.symmetric(
+        //             horizontal: 24.w,
+        //             vertical: 5.w,
+        //           ),
+        //           child: InkWell(
+        //             onTap: () {
+        //               Navigator.of(context).pop();
+        //             },
+        //             child: Container(
+        //               width: 40.w,
+        //               height: 40.h,
+        //               decoration: BoxDecoration(
+        //                 border: Border.all(
+        //                   color: AppColors.regularGrey,
+        //                   width: 1,
+        //                 ),
+        //                 borderRadius: BorderRadius.circular(8.r),
+        //               ),
+        //               child: Icon(
+        //                 Icons.arrow,
+        //                 size: 18.sp,
+        //                 color: AppColors.grey,
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        // ),
+        // ),
+        // ),
+        backgroundColor: Colors.white,
+        body: SafeArea(
           child: Stack(
             children: [
-              // AppBar مخصص
+              // الخط الفاصل أسفل التاب
               Positioned(
-                top: 0,
+                top: 310.h,
                 left: 0,
                 right: 0,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 18),
-                    Row(
-                      children: [
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              'معلومات الفني',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: dividerColor),
-                          ),
-                          child: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 20,
-                            color: Colors.black54,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                      ],
-                    ),
-                    const SizedBox(height: 25),
-                    Divider(thickness: 1, color: dividerColor),
-                  ],
-                ),
+                child: const Divider(thickness: 1, color: dividerColor),
               ),
-              // البانر الأزرق
+
+              // صورة الغلاف
               Positioned(
-                top: bannerTop,
-                left: bannerLeft,
+                top: 80.h,
+                left: 16.w,
+                right: 16.w,
                 child: Container(
-                  width: bannerWidth,
-                  height: bannerHeight,
+                  height: 120.h,
                   decoration: BoxDecoration(
-                    color: mainBlue,
-                    borderRadius: BorderRadius.circular(bannerRadius),
-                    image:
-                        patternAsset != null
-                            ? DecorationImage(
-                              image: AssetImage(patternAsset),
-                              fit: BoxFit.cover,
-                            )
-                            : null,
+                    borderRadius: BorderRadius.circular(16.r),
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/cover_noising.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-              // صورة البروفايل
+
+              // صورة البروفايل الدائرية
               Positioned(
-                top: profileTop,
-                right: profileRight,
+                top: 140.h,
+                right: 45.w,
                 child: Container(
-                  width: profileSize + profileBorder * 2,
-                  height: profileSize + profileBorder * 2,
+                  width: 108.w,
+                  height: 108.w,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: profileBorder,
-                    ),
-                    boxShadow: [
+                    border: Border.all(color: Colors.white, width: 6.w),
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black12,
                         blurRadius: 6,
@@ -144,189 +130,97 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     ],
                   ),
                   child: ClipOval(
-                    child: Image.asset(
-                      profileImageAsset,
-                      width: profileSize,
-                      height: profileSize,
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.asset(profileImageAsset, fit: BoxFit.cover),
                   ),
                 ),
               ),
-              // التاب بار
+
+              // شريط التاب
               Positioned(
-                top: tabBarTop,
-                left: 16,
-                right: 16,
+                top: 265.h,
+                left: 16.w,
+                right: 16.w,
                 child: Container(
-                  height: tabBarHeight,
+                  height: 48.h,
                   decoration: BoxDecoration(
                     color: tabInactive,
-                    borderRadius: BorderRadius.circular(tabBarRadius),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Row(
-                    children: [
-                      Expanded(
+                    children: List.generate(3, (index) {
+                      final labels = ['تفاصيل', 'التقييم', 'الاسئلة'];
+                      return Expanded(
                         child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedTab = 0;
-                            });
-                          },
+                          onTap: () => setState(() => selectedTab = index),
                           child: Container(
-                            height: tabBarHeight,
                             decoration: BoxDecoration(
-                              color: selectedTab == 0 ? tabActive : tabInactive,
-                              borderRadius: BorderRadius.circular(
-                                tabActiveRadius,
-                              ),
+                              color:
+                                  selectedTab == index ? mainBlue : tabInactive,
+                              borderRadius: BorderRadius.circular(12.r),
                             ),
                             child: Center(
                               child: Text(
-                                'تفاصيل',
+                                labels[index],
                                 style: TextStyle(
                                   color:
-                                      selectedTab == 0
+                                      selectedTab == index
                                           ? Colors.white
                                           : tabInactiveText,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: tabFontSize,
+                                  fontSize: 16.sp,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedTab = 1;
-                            });
-                          },
-                          child: Container(
-                            height: tabBarHeight,
-                            decoration: BoxDecoration(
-                              color: selectedTab == 1 ? tabActive : tabInactive,
-                              borderRadius: BorderRadius.circular(
-                                tabActiveRadius,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'التقييم',
-                                style: TextStyle(
-                                  color:
-                                      selectedTab == 1
-                                          ? Colors.white
-                                          : tabInactiveText,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: tabFontSize,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedTab = 2;
-                            });
-                          },
-                          child: Container(
-                            height: tabBarHeight,
-                            decoration: BoxDecoration(
-                              color: selectedTab == 2 ? tabActive : tabInactive,
-                              borderRadius: BorderRadius.circular(
-                                tabActiveRadius,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'الاسئلة',
-                                style: TextStyle(
-                                  color:
-                                      selectedTab == 2
-                                          ? Colors.white
-                                          : tabInactiveText,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: tabFontSize,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      );
+                    }),
                   ),
                 ),
               ),
-              if (selectedTab == 0)
-                Positioned(
-                  top: 350, // جرّب قيمة أعلى من 311 لتلاحظ الفرق
-                  left: 0,
-                  right: 0,
-                  bottom: 88,
-                  child: DetailsSection(),
-                ),
-              if (selectedTab == 1)
-                Positioned(
-                  top: 350,
-                  left: 0,
-                  right: 0,
-                  bottom: 88,
-                  child: RatingSection(),
-                ),
-              if (selectedTab == 2)
-                Positioned(
-                  top: 350,
-                  left: 0,
-                  right: 0,
-                  bottom: 88,
-                  child: questionsContent,
-                ),
 
-              // محتوى الصفحة حسب التبويب في منتصف الصفحة وفوق الزر
-              // if (selectedTab == 0)
-              //   Positioned.fill(
-              //     top: tabBarTop + tabBarHeight + 16,
-              //     bottom: 88,
-              //     child: DetailsSection(),
-              //   ),
-              // if (selectedTab == 1)
-              //   Positioned.fill(
-              //     top: tabBarTop + tabBarHeight + 16,
-              //     bottom: 88,
-              //     child: RatingSection(),
-              //   ),
-              // if (selectedTab == 2)
-              //   Positioned.fill(
-              //     top: tabBarTop + tabBarHeight + 16,
-              //     bottom: 88,
-              //     child: questionsContent,
-              //   ),
-              // زر طلب الخدمة أو إضافة تقييم في الأسفل دائماً
+              // محتوى التاب (تفاصيل - تقييم - اسئلة)
+              Positioned(
+                top: 330.h,
+                left: 0,
+                right: 0,
+                bottom: 88.h,
+                child: Builder(
+                  builder: (_) {
+                    switch (selectedTab) {
+                      case 0:
+                        return const DetailsSection();
+                      case 1:
+                        return const RatingSection();
+                      case 2:
+                        return const QuestionsSection();
+                      default:
+                        return const SizedBox();
+                    }
+                  },
+                ),
+              ),
+
+              // أزرار أسفل الشاشة حسب التاب المحدد
               if (selectedTab == 0)
                 Positioned(
-                  left: 24,
-                  right: 24,
-                  bottom: 32,
+                  left: 24.w,
+                  right: 24.w,
+                  bottom: 32.h,
                   child: SizedBox(
-                    height: 56,
+                    height: 56.h,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: mainBlue,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
                       ),
                       onPressed: () {},
                       child: Text(
                         'طلب الخدمة',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -334,27 +228,28 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     ),
                   ),
                 ),
+
               if (selectedTab == 1)
                 Positioned(
-                  left: 24,
-                  right: 24,
-                  bottom: 32,
+                  left: 24.w,
+                  right: 24.w,
+                  bottom: 32.h,
                   child: SizedBox(
-                    height: 48,
+                    height: 48.h,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: blueservice,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
                       ),
                       onPressed: () {
                         showRatingBottomSheet(context);
                       },
-                      child: const Text(
+                      child: Text(
                         'اضافة تقييم',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
