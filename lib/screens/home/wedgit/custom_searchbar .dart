@@ -43,7 +43,7 @@ class CustomSearchBar extends StatelessWidget {
             ),
            
               child: Image.asset(
-                'assets/icons/006.png', // لاحظ استبدال \ بـ / لتجنب مشاكل المسار
+                'assets/icons/search.png', // لاحظ استبدال \ بـ / لتجنب مشاكل المسار
                 width: 24.w,
                 height: 24.h,
               ),
