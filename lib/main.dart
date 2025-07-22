@@ -55,6 +55,8 @@ class MyApp extends StatelessWidget {
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
             '/profile': (_) => const ProfileScreen(),
             '/favorite': (_) => const FavoriteScreen(),
+            '/contactUs': (_) => const ContactUsScreen(),
+            '/about': (_) => const AboutAppScreen(),
           },
         );
       },

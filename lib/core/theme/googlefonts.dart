@@ -1,129 +1,117 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 
 class AppFonts {
-  static TextStyle appBarFont = TextStyle(
-    fontFamily: 'Almarai',
+  // appbar
+  static TextStyle appBarFont = GoogleFonts.almarai(
     fontSize: 18.sp,
     fontWeight: FontWeight.w800,
     color: AppColors.black,
   );
-
-  static TextStyle onBoardingMainFont = TextStyle(
-    fontFamily: 'Almarai',
+  //boarding screens
+  static TextStyle onBoardingMainFont = GoogleFonts.almarai(
     fontSize: 24.sp,
     fontWeight: FontWeight.w800,
     color: AppColors.black,
   );
 
-  static TextStyle onBoardingSecondaryFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle onBoardingSecondaryFont = GoogleFonts.almarai(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
 
-  static TextStyle signInMainHeaderFont = TextStyle(
-    fontFamily: 'Tajawal',
+  // SignIn and Register Screen fonts
+  static TextStyle signInMainHeaderFont = GoogleFonts.tajawal(
     fontSize: 28.sp,
     fontWeight: FontWeight.w800,
     color: AppColors.black,
   );
-
-  static TextStyle signInServiceFont = TextStyle(
-    fontFamily: 'Poppins',
+  static TextStyle signInServiceFont = GoogleFonts.poppins(
     fontSize: 18.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.primary,
   );
 
-  static TextStyle signInSecondaryHeaderFont = TextStyle(
-    fontFamily: 'Poppins',
+  static TextStyle signInSecondaryHeaderFont = GoogleFonts.poppins(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
 
-  static TextStyle signMainFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle signMainFormFont = GoogleFonts.almarai(
     fontSize: 18.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
 
-  static TextStyle signSecondaryFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle signSecondaryFormFont = GoogleFonts.almarai(
     fontSize: 14.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.grey,
   );
 
-  static TextStyle registerMainFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle registerMainFormFont = GoogleFonts.almarai(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
-
-  static TextStyle contactUsFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  //Contact Us screen
+  static TextStyle contactUsFormFont = GoogleFonts.almarai(
     fontSize: 14.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.primary,
   );
-
-  static TextStyle aboutAppTitle1FormFont = TextStyle(
-    fontFamily: 'Almarai',
+  // About App screen
+  static TextStyle aboutAppTitle1FormFont = GoogleFonts.almarai(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
 
-  static TextStyle aboutAppHedarFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle aboutAppHedarFormFont = GoogleFonts.almarai(
     fontSize: 18.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
-
-  static TextStyle aboutAppBodyFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle aboutAppBodyFormFont = GoogleFonts.almarai(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
-
-  static TextStyle aboutAppTitle2FormFont = TextStyle(
-    fontFamily: 'Tajawal',
+  //كلمه خدماتك
+  static TextStyle aboutAppTitle2FormFont = GoogleFonts.tajawal(
     fontSize: 16.sp,
     fontWeight: FontWeight.w800,
     color: AppColors.primary,
   );
-
-  static TextStyle termCondTitleFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  // term&conddition screen
+  static TextStyle termCondTitleFormFont = GoogleFonts.almarai(
     fontSize: 14.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
 
-  static TextStyle termCondBodyFormFont = TextStyle(
-    fontFamily: 'Almarai',
+  static TextStyle termCondBodyFormFont = GoogleFonts.almarai(
     fontSize: 14.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.grey,
   );
+  // home screen fonts
 
-  static TextStyle fontName = TextStyle(
-    fontFamily: 'Almarai',
+  // service screens fonts
+
+  // favorite screenst fonts
+
+  //profile screens fonts
+  static TextStyle fontName = GoogleFonts.almarai(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.black,
   );
-
-  static TextStyle englishLa = TextStyle(
-    fontFamily: 'Poppins',
+  static TextStyle englishLa = GoogleFonts.poppins(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.black,
