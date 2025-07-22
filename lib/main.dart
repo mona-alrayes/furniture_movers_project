@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
+import 'package:furniture_movers_project/screens/home/home_screen.dart';
+import 'package:furniture_movers_project/screens/service/service_details_screen.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
@@ -17,8 +19,6 @@ import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
 import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
 import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
-import 'package:furniture_movers_project/core/widgets/main_layout.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -52,15 +52,20 @@ class MyApp extends StatelessWidget {
             '/onboarding1': (_) => const OnboardingScreen1(),
             '/onboarding2': (_) => const OnboardingScreen2(),
             '/onboarding3': (_) => const OnboardingScreen3(),
-            '/chat': (_) =>  ChatListScreen(),
+            '/chat': (_) => ChatListScreen(),
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
             '/profile': (_) => const ProfileScreen(),
             '/favorite': (_) => const FavoriteScreen(),
+            '/serviceDetails': (_) => const ServiceDetailsScreen(),
+            '/furnitureMoving': (_) => const FurnitureMovingScreen(),
+            '/about': (_) => const AboutAppScreen(),
+            '/contactUs': (_) => const ContactUsScreen(),
           },
         );
       },
     );
   }
 }
+
 
 

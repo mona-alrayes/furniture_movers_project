@@ -41,13 +41,14 @@ class CustomSearchBar extends StatelessWidget {
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: SvgPicture.asset(
-              'assets/icons/filter.svg',
-              width: 24.w,
-              height: 24.h,
-              color: AppColors.white, // إذا كنت تريد تلوين الأيقونة
+           
+              child: Image.asset(
+                'assets/icons/006.png', // لاحظ استبدال \ بـ / لتجنب مشاكل المسار
+                width: 24.w,
+                height: 24.h,
+              ),
             ),
-          ),
+         
         ],
       ),
     );
