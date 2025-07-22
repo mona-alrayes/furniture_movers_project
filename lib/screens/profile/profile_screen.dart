@@ -142,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               border: Border.all(color: AppColors.regularGrey, width: 1.w),
             ),
             child: AppBar(
-              automaticallyImplyLeading: false,
+              //automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
               elevation: 0,
               centerTitle: true,

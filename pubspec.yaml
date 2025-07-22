@@ -1,6 +1,6 @@
 name: furniture_movers_project
 description: "A new Flutter project."
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -10,11 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
-
- # The following adds the Cupertino Icons font to your application.
- # Use with the CupertinoIcons class for iOS style icons.
 
   cupertino_icons: ^1.0.8
   intl_phone_field: ^3.2.0
@@ -32,9 +27,6 @@ dependencies:
   provider: ^6.0.3
   intl: ^0.17.0
 
-
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,3 +38,27 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+
+  fonts:
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/Almarai-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Almarai-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Almarai-ExtraBold.ttf
+          weight: 800
+
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/Tajawal-ExtraBold.ttf
+          weight: 800
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
