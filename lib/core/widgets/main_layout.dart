@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
@@ -60,8 +61,9 @@ class _MainLayoutState extends State<MainLayout> {
             currentIndex: _currentIndex,
             onTap: _onItemTapped,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.grey,
+            backgroundColor: Colors.white,
+            selectedItemColor: AppColors.primary,
+            unselectedItemColor: AppColors.grey,
             selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
             unselectedLabelStyle: TextStyle(fontSize: 12.sp),
             items: [
@@ -84,7 +86,7 @@ class _MainLayoutState extends State<MainLayout> {
                 ),
                 activeIcon: ColorFiltered(
                   colorFilter: const ColorFilter.mode(
-                    Colors.blue, // اللون عند التفعيل
+                    AppColors.primary, // اللون عند التفعيل
                     BlendMode.srcIn,
                   ),
                   child: Image.asset(
