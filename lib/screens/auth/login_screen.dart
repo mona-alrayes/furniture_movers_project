@@ -178,7 +178,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     if (_phoneController.text.isNotEmpty &&
                         _passwordController.text.isNotEmpty) {
-                      // استبدل هذا الجزء:
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

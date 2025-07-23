@@ -7,14 +7,21 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
+  
   //للروابط الخارجية
   void _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
+    try {
+      bool launched = await launchUrl(
+        uri,
+        mode: LaunchMode.platformDefault, // ← هذا الوضع أفضل للجوال
+      );
 
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
-      print('Cannot open link: $url');
+      if (!launched) {
+        print('❌ لم يتم فتح الرابط: $url');
+      }
+    } catch (e) {
+      print('❌ خطأ أثناء فتح الرابط: $e');
     }
   }
 
@@ -71,7 +78,8 @@ class ContactUsScreen extends StatelessWidget {
       ),
     );
   }
-//تابع ل محتويات الاسطر
+
+  //تابع ل محتويات الاسطر
   Widget _buildContactRow({
     required Widget iconWidget,
     required String text,
