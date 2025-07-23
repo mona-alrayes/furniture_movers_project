@@ -182,4 +182,12 @@ static TextStyle hintTextBoxFont = TextStyle(
   color: AppColors.grey,
 );
 
+
+  static TextStyle ratingFont = TextStyle(
+    fontFamily: 'Almarai',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
+  );
+
 }
