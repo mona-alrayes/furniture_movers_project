@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/core/widgets/custom_main_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void showRatingBottomSheet(BuildContext context) {
   const Color mainBlue = Color(0xff4A87CB);
@@ -24,28 +28,33 @@ void showRatingBottomSheet(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  width: 40,
-                  height: 4,
+                  width: 40.w,
+                  height: 4.h,
                   margin: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
-                    color: Colors.grey[400],
+                    color: AppColors.black,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
-                const Text(
+                Text(
                   'اضافة تقييم',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  style: GoogleFonts.almarai(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.sp,
+                  ),
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 10.h),
                 // صف النجوم
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(5, (index) {
                     return IconButton(
                       icon: Icon(
-                        index < rating ? Icons.star : Icons.star_border,
+                        index < rating
+                            ? Icons.star_border_outlined
+                            : Icons.star_rate_sharp,
                         color: Colors.black,
-                        size: 40,
+                        size: 40.sp,
                       ),
                       onPressed: () {
                         setModalState(() {
@@ -63,7 +72,7 @@ void showRatingBottomSheet(BuildContext context) {
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
                     hintText: 'اكتب تعليق',
-                    hintStyle: TextStyle(color: Colors.grey),
+                    hintStyle: GoogleFonts.almarai(color: AppColors.grey),
                     filled: true,
                     fillColor: Colors.grey[100],
                     border: OutlineInputBorder(
@@ -80,27 +89,14 @@ void showRatingBottomSheet(BuildContext context) {
                 SizedBox(
                   width: double.infinity,
                   height: 48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: mainBlue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+                  child: CustomMainButton(
+                    text: "موافق",
                     onPressed: () {
                       Navigator.of(context).pop();
-                      // يمكنك هنا تنفيذ منطق إرسال التقييم
                     },
-                    child: const Text(
-                      'موافق',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
                   ),
                 ),
+
                 SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
               ],
             ),

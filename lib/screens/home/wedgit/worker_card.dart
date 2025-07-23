@@ -6,7 +6,7 @@ import 'package:furniture_movers_project/core/widgets/custom_button_hajz.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_workers.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
-import 'package:furniture_movers_project/screens/service/service_details_screen.dart';
+import 'package:furniture_movers_project/screens/service/service.dart';
 
 
 
@@ -159,7 +159,7 @@ class _WorkersListState extends State<WorkersList> {
           onTap: () {
             Navigator.of(
               context,
-            ).push(MaterialPageRoute(builder: (context) => ServiceDetailsScreen()));
+            ).push(MaterialPageRoute(builder: (context) => ServiceDetails()));
           },
           child: WorkerCard(
             name: worker.name,

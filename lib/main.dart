@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'package:furniture_movers_project/screens/home/home_screen.dart';
-import 'package:furniture_movers_project/screens/service/service_details_screen.dart';
+import 'package:furniture_movers_project/screens/service/service.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
             '/profile': (_) => const ProfileScreen(),
             '/favorite': (_) => const FavoritesScreen(),
-            '/serviceDetails': (_) => const ServiceDetailsScreen(),
+            '/serviceDetails': (_) => const ServiceDetails(),
             '/furnitureMoving': (_) => const FurnitureMoving(),
             '/about': (_) => const AboutAppScreen(),
             '/contactUs': (_) => const ContactUsScreen(),
