@@ -98,7 +98,7 @@ class ChatListScreen extends StatelessWidget {
                                         CircleAvatar(
                                           radius: 28.r,
                                           backgroundImage:
-                                              AssetImage(user.avatarUrl),
+                                          NetworkImage(user.avatarUrl),
                                         ),
                                         SizedBox(width: 12.w),
                                         Expanded(
@@ -113,7 +113,7 @@ class ChatListScreen extends StatelessWidget {
                                               ),
                                               SizedBox(height: 4.h),
                                               Text(
-                                                lastMessage.text,
+                                                user.lastMessage,
                                                 style:
                                                     AppFonts.lastMessagesChatFont,
                                                 overflow: TextOverflow.ellipsis,

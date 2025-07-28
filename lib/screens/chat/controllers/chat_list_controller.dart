@@ -1,26 +1,40 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:furniture_movers_project/screens/chat/models/chat_user.dart';
+import 'package:http/http.dart' as http;
+import '../models/chat_user.dart';
 
 class ChatListController extends ChangeNotifier {
   List<ChatUser> _chatUsers = [];
-
   List<ChatUser> get chatUsers => _chatUsers;
+
+  final String _url = 'https://ftcbwmmsnykncncsyrfs.supabase.co/rest/v1/chats';
+  final String _apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw';
+  final String _bearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw';
 
   ChatListController() {
     loadChats();
   }
 
-  void loadChats() async {
-    await Future.delayed(const Duration(seconds: 1));
+  Future<void> loadChats() async {
+    try {
+      final response = await http.get(
+        Uri.parse(_url),
+        headers: {
+          'apikey': _apiKey,
+          'Authorization': 'Bearer $_bearerToken',
+          'Accept': 'application/json',
+        },
+      );
 
-    _chatUsers = [
-      ChatUser(id: '1', name: "علي الشمري", avatarUrl: "assets/images/avatar.jpg", status: "متصل"),
-      ChatUser(id: '2', name: "فاطمة الزهراء", avatarUrl: "assets/images/avatar.jpg", status: "غائب"),
-      ChatUser(id: '3', name: "سعيد البلوشي", avatarUrl: "assets/images/avatar.jpg", status: "متصل"),
-      ChatUser(id: '4', name: "ليلى العلي", avatarUrl: "assets/images/avatar.jpg", status: "غائب"),
-      ChatUser(id: '5', name: "حسن الجبوري", avatarUrl: "assets/images/avatar.jpg", status: "متصل"),
-    ];
-
-    notifyListeners();
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        _chatUsers = data.map((e) => ChatUser.fromJson(e)).toList();
+        notifyListeners();
+      } else {
+        print('Error: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      print('Exception: $e');
+    }
   }
 }
