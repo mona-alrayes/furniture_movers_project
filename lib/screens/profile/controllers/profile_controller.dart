@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:dio/dio.dart';
 
 import '../models/profile_action.dart';
 
@@ -9,6 +11,7 @@ class ProfileController extends ChangeNotifier {
 
   String _name = '';
   String _phone = '';
+  String _imageUrl = '';
   File? _profileImage;
   bool _isLoading = true;
 
@@ -18,6 +21,7 @@ class ProfileController extends ChangeNotifier {
 
   String get name => _name;
   String get phone => _phone;
+  String get imageUrl => _imageUrl;
   File? get profileImage => _profileImage;
   bool get isLoading => _isLoading;
   List<ProfileMenuSection> get sections => _sections;
@@ -34,9 +38,31 @@ class ProfileController extends ChangeNotifier {
   }
 
   Future<void> fetchProfileData() async {
-    await Future.delayed(const Duration(seconds: 1));
-    _name = 'محمد علي';
-    _phone = '009677356464774';
+    try {
+      final dio = Dio();
+
+      final headers = {
+        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw',
+        'Accept': 'application/json',
+      };
+
+      final response = await dio.get(
+        'https://ftcbwmmsnykncncsyrfs.supabase.co/rest/v1/profile',
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200 && response.data is List && response.data.isNotEmpty) {
+        final data = response.data[0];
+        _name = data['name'] ?? '';
+        _phone = data['number'] ?? '';
+        _imageUrl = data['image_url'] ?? '';
+      } else {
+        debugPrint('لم يتم العثور على بيانات المستخدم.');
+      }
+    } catch (e) {
+      debugPrint('خطأ أثناء جلب بيانات البروفايل: $e');
+    }
   }
 
   Future<void> pickImage() async {
@@ -44,49 +70,42 @@ class ProfileController extends ChangeNotifier {
     if (picked != null) {
       _profileImage = File(picked.path);
       notifyListeners();
+      // TODO: رفع الصورة إلى API (عند توفر endpoint)
     }
   }
 
   // ---------------------------------------------------------------------------
-  // TODO منطق العناصر (تُستدعى من واجهة المستخدم حسب ProfileAction)
+  // منطق القائمة
   // ---------------------------------------------------------------------------
   Future<void> changePhone() async {
-    // TODO: أضف المنطق لتغيير رقم الهاتف
     debugPrint('changePhone() called');
   }
 
   Future<void> changePassword() async {
-    // TODO
     debugPrint('changePassword() called');
   }
 
   Future<void> changeLanguage() async {
-    // ملاحظة: الملاحة تُدار من شاشة البروفايل. اتركها فارغة أو استخدم event bus.
     debugPrint('changeLanguage() (logic placeholder)');
   }
 
   Future<void> toggleAppMode() async {
-    // TODO: Light / Dark
     debugPrint('toggleAppMode() called');
   }
 
   void contactUs() {
-    // TODO: افتح mailto أو صفحة تواصل
     debugPrint('contactUs() called');
   }
 
   void showTerms() {
-    // TODO: اعرض صفحة شروط الخدمة
     debugPrint('showTerms() called');
   }
 
   void showAbout() {
-    // TODO: اعرض صفحة حول التطبيق
     debugPrint('showAbout() called');
   }
 
   Future<void> logout() async {
-    // TODO: سجل خروج المستخدم
     debugPrint('logout() called');
   }
 
