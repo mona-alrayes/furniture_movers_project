@@ -48,9 +48,18 @@ class ProfileHeader extends StatelessWidget {
           ],
         ),
         SizedBox(height: 12.h),
-        Text(name, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700)),
+        Text(
+          name,
+          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
+        ),
         SizedBox(height: 4.h),
-        Text(phone, style: TextStyle(fontSize: 14.sp, color: Colors.grey)),
+        Directionality(
+          textDirection: TextDirection.ltr, // ضمان عرض الرقم من اليسار لليمين
+          child: Text(
+            phone,
+            style: TextStyle(fontSize: 14.sp, color: Colors.grey),
+          ),
+        ),
       ],
     );
   }
