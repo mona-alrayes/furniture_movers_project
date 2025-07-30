@@ -7,14 +7,63 @@ import 'package:furniture_movers_project/core/theme/fonts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:furniture_movers_project/screens/chat/messages_screen.dart';
 import 'controllers/messages_controller.dart';
+import 'package:flutter/services.dart';
 
 class ChatListScreen extends StatelessWidget {
   ChatListScreen({super.key});
 
+  void showExitAppDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.white,
+        title: Text('تأكيد الخروج',
+          style: AppFonts.appBarFont,
+          textDirection: TextDirection.rtl,),
+
+        content: Text('هل أنت متأكد أنك تريد الخروج؟',
+          style: AppFonts.termCondTitleFormFont,
+          textDirection: TextDirection.rtl,),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('إلغاء',
+              style: GoogleFonts.almarai(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              color: AppColors.brightBlue,
+            ),),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              SystemNavigator.pop();
+            },
+            child: Text('نعم',
+              style: GoogleFonts.almarai(
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.brightBlue,
+              ),),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ChatListController>(
+    return WillPopScope(
+        onWillPop: () async {
+          showExitAppDialog(context);
+          return false;
+        },
+
+    child: ChangeNotifierProvider<ChatListController>(
       create: (context) => ChatListController(),
+
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.h),
@@ -25,6 +74,7 @@ class ChatListScreen extends StatelessWidget {
                 bottom: BorderSide(color: AppColors.regularGrey, width: 1),
               ),
             ),
+
             child: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Colors.transparent,
@@ -41,7 +91,9 @@ class ChatListScreen extends StatelessWidget {
             ),
           ),
         ),
+
         backgroundColor: AppColors.white,
+
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Consumer<ChatListController>(
@@ -151,7 +203,7 @@ class ChatListScreen extends StatelessWidget {
             },
           ),
         ),
-      ),
+      ),),
     );
   }
 }
