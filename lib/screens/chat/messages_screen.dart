@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/screens/chat/models/chat_user.dart';
 import 'package:furniture_movers_project/screens/chat/controllers/messages_controller.dart';
 
-
 enum MessagePosition {
   single,
   first,
@@ -31,6 +30,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   void initState() {
     super.initState();
     controller = MessagesController(widget.user);
+
     controller.addListener(() {
       if (mounted) {
         setState(() {});
@@ -45,7 +45,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
         });
       }
     });
+
+    controller.loadMessages();
   }
+
 
   @override
   void dispose() {
@@ -161,7 +164,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         toolbarHeight: 72.h,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -188,19 +191,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(widget.user.name, style: AppFonts.mainNameChatMessagesFont.copyWith(
-                      ),),
+                      Text(widget.user.name, style: AppFonts.mainNameChatMessagesFont),
                       SizedBox(height: 10.h),
-                      Text(
-                        widget.user.status,
-                        style: AppFonts.statueConectionChatMessagesFont.copyWith(
-                        ),
-                      ),
+                      Text(widget.user.status, style: AppFonts.statueConectionChatMessagesFont),
                     ],
                   ),
                   SizedBox(width: 12.w),
                   CircleAvatar(
-                    backgroundImage: AssetImage(widget.user.avatarUrl),
+                    backgroundImage: NetworkImage(widget.user.avatarUrl),
                     radius: 24.r,
                   ),
                 ],
@@ -216,7 +214,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
           ),
         ),
       ),
-
       body: Container(
         color: AppColors.white,
         child: Column(
@@ -252,8 +249,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             ),
                             child: Text(
                               dateLabel,
-                              style: AppFonts.daySentMessagesFont.copyWith(
-                              ),
+                              style: AppFonts.daySentMessagesFont,
                             ),
                           ),
                         ),
@@ -270,12 +266,12 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                 children: [
                                   if (!isMe)
                                     Padding(
-                                      padding: EdgeInsets.only(left: 16.w),
+                                      padding: EdgeInsets.only(left: 12.w),
                                       child: Transform.translate(
                                         offset: Offset(0, 4.h),
                                         child: CircleAvatar(
                                           radius: 26.r,
-                                          backgroundImage: AssetImage(widget.user.avatarUrl),
+                                          backgroundImage: NetworkImage(widget.user.avatarUrl),
                                         ),
                                       ),
                                     )
@@ -291,59 +287,66 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                         final position = getMessagePosition(group, index);
 
                                         return Container(
-                                            margin: EdgeInsets.only(
-                                              top: index == 0 ? 0 : 4.h,
-                                              left: isMe ? 48.w : 8.w,
-                                              right: isMe ? 16.w : 48.w,
-                                            ),
-                                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-                                            decoration: BoxDecoration(
-                                              color: isMe ? AppColors.primary : AppColors.darkBlue,
-                                              borderRadius: getMessageBorderRadius(isMe, position),
-                                            ),
-                                            constraints: BoxConstraints(
-                                              maxWidth: MediaQuery.of(context).size.width * 0.7,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                              children: [
-                                                Flexible(
-                                                  child: Text(
-                                                    message.text,
-                                              style: AppFonts.userMessagesFont.copyWith(),
-                                                ),),
-                                                SizedBox(width: 8.w),
-                                                if (isMe) ...[
-                                                  Text(
-                                                    _formatTime(message.timestamp),
-                                                    style: AppFonts.formatTimeMessagesFont.copyWith(),
-                                                  ),
-                                                  SizedBox(width: 4.w),
-                                                  SvgPicture.asset(
-                                                    message.isRead
-                                                        ? 'assets/icons/checked_icon.svg'
-                                                        : 'assets/icons/check_icon.svg',
-                                                    width: message.isRead ? 24.w : 12.w,
-                                                    height: message.isRead ? 24.h : 12.h,
-                                                    color: message.isRead ? AppColors.brightBlue : AppColors.grey,
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                                ] else ...[
-                                                  Text(
-                                                    _formatTime(message.timestamp),
-                                                    style: AppFonts.formatTimeMessagesFont.copyWith(),
-                                                  ),],],
-                                            ));
+                                          margin: EdgeInsets.only(
+                                            top: index == 0 ? 0 : 4.h,
+                                            left: isMe ? 48.w : 8.w,
+                                            right: isMe ? 16.w : 48.w,
+                                          ),
+                                          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                                          decoration: BoxDecoration(
+                                            color: isMe ? AppColors.primary : AppColors.darkBlue,
+                                            borderRadius: getMessageBorderRadius(isMe, position),
+                                          ),
+                                          constraints: BoxConstraints(
+                                            maxWidth: MediaQuery.of(context).size.width * 0.7,
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment: CrossAxisAlignment.end,
+                                            children: [
+                                              Flexible(
+                                                child: Text(
+                                                  message.text,
+                                                  style: AppFonts.userMessagesFont,
+                                                ),
+                                              ),
+                                              SizedBox(width: 8.w),
+                                              if (isMe) ...[
+                                                Text(
+                                                  _formatTime(message.timestamp),
+                                                  style: AppFonts.formatTimeMessagesFont,
+                                                ),
+                                                SizedBox(width: 4.w),
+                                                SvgPicture.asset(
+                                                  message.isRead
+                                                      ? 'assets/icons/check_icon.svg'
+                                                      : 'assets/icons/checked_icon.svg',
+                                                  width: message.isRead ? 24.w : 12.w,
+                                                  height: message.isRead ? 24.h : 12.h,
+                                                  color: message.isRead ? AppColors.brightBlue : AppColors.grey,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ] else ...[
+                                                Text(
+                                                  _formatTime(message.timestamp),
+                                                  style: AppFonts.formatTimeMessagesFont,
+                                                ),
+                                              ],
+                                            ],
+                                          ),
+                                        );
                                       }),
                                     ),
-                                  ),],
+                                  ),
+                                ],
                               ),
                             ),
                           );
-                        }),],
+                        }),
+                      ],
                     ),
-                  );},
+                  );
+                },
               ),
             ),
             Padding(
@@ -353,7 +356,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   Container(
                     width: 48.w,
                     height: 48.h,
-                    decoration:  BoxDecoration(
+                    decoration: BoxDecoration(
                       color: AppColors.primary,
                       shape: BoxShape.circle,
                     ),
@@ -386,7 +389,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               onSubmitted: (_) => sendMessage(),
                               decoration: InputDecoration(
                                 hintText: 'اكتب',
-                                hintStyle: AppFonts.hintTextBoxFont.copyWith(),
+                                hintStyle: AppFonts.hintTextBoxFont,
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
                               ),
