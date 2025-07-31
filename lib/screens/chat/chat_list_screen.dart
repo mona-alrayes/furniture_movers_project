@@ -12,58 +12,10 @@ import 'package:flutter/services.dart';
 class ChatListScreen extends StatelessWidget {
   ChatListScreen({super.key});
 
-  void showExitAppDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppColors.white,
-        title: Text('تأكيد الخروج',
-          style: AppFonts.appBarFont,
-          textDirection: TextDirection.rtl,),
-
-        content: Text('هل أنت متأكد أنك تريد الخروج؟',
-          style: AppFonts.termCondTitleFormFont,
-          textDirection: TextDirection.rtl,),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('إلغاء',
-              style: GoogleFonts.almarai(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              color: AppColors.brightBlue,
-            ),),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              SystemNavigator.pop();
-            },
-            child: Text('نعم',
-              style: GoogleFonts.almarai(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w400,
-                color: AppColors.brightBlue,
-              ),),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
-          showExitAppDialog(context);
-          return false;
-        },
-
-    child: ChangeNotifierProvider<ChatListController>(
-      create: (context) => ChatListController(),
-
+          return ChangeNotifierProvider<ChatListController>(
+              create: (context) => ChatListController(),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.h),
@@ -203,7 +155,7 @@ class ChatListScreen extends StatelessWidget {
             },
           ),
         ),
-      ),),
+      ),
     );
   }
 }
