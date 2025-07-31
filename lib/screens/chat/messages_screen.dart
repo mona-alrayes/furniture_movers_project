@@ -193,7 +193,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     children: [
                       Text(widget.user.name, style: AppFonts.mainNameChatMessagesFont),
                       SizedBox(height: 10.h),
-                      Text(widget.user.status, style: AppFonts.statueConectionChatMessagesFont),
+                      Text(
+                        widget.user.isOnline ? 'online' : 'offline',
+                        style: widget.user.isOnline ?  AppFonts.onlinStatueChatMessagesFont : AppFonts.offlinStatueChatMessagesFont
+                      ),
                     ],
                   ),
                   SizedBox(width: 12.w),

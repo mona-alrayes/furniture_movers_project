@@ -147,12 +147,19 @@ static TextStyle mainNameChatMessagesFont = TextStyle(
   color: AppColors.paltteBlack,
 );
 
-static TextStyle statueConectionChatMessagesFont = TextStyle(
+static TextStyle onlinStatueChatMessagesFont = TextStyle(
   fontFamily: 'Almarai',
   fontSize: 12.sp,
   fontWeight: FontWeight.w400,
   color: AppColors.green,
 );
+
+  static TextStyle offlinStatueChatMessagesFont = TextStyle(
+    fontFamily: 'Almarai',
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.red,
+  );
 
 static TextStyle daySentMessagesFont = TextStyle(
   fontFamily: 'Almarai',

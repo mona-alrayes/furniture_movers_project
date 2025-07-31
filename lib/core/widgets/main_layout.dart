@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/core/theme/fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
@@ -41,7 +44,58 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
+    return WillPopScope(
+        onWillPop: () async {
+      // If not on HomeScreen, navigate to HomeScreen
+      if (_currentIndex != 0) {
+        setState(() {
+          _currentIndex = 0;
+        });
+        return false; // Prevent default back behavior
+      }
+
+      // If already on HomeScreen, show exit confirmation dialog
+      return await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.white,
+          title: Text(
+            'تأكيد الخروج',
+            style: AppFonts.appBarFont,
+            textDirection: TextDirection.rtl,
+          ),
+          content: Text(
+            'هل تريد الخروج من التطبيق؟',
+            style: AppFonts.termCondTitleFormFont,
+            textDirection: TextDirection.rtl,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text('إلغاء',
+              style: GoogleFonts.almarai(
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.brightBlue,
+          ),),),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                SystemNavigator.pop();
+              },
+              child: Text(
+                'نعم',
+                style: GoogleFonts.almarai(
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.brightBlue,
+          ),),),
+          ],
+        ),
+      ) ?? false;
+    },
+
+      child: Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         body: _screens[_currentIndex],
@@ -110,7 +164,7 @@ class _MainLayoutState extends State<MainLayout> {
             ],
           ),
         ),
-      ),
+      ),),
     );
   }
 }
