@@ -73,6 +73,14 @@ class AppFonts {
     color: AppColors.primary,
   );
 
+  static TextStyle accountLoginLink = TextStyle(
+    fontFamily: 'Almarai',
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primary,
+    decoration: TextDecoration.underline,
+  );
+
   static TextStyle aboutAppTitle1FormFont = TextStyle(
     fontFamily: 'Almarai',
     fontSize: 16.sp,
