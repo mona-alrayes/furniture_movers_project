@@ -6,12 +6,8 @@ import 'package:furniture_movers_project/core/widgets/custom_main_button.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/theme/fonts.dart';
 import 'package:furniture_movers_project/screens/auth/controllers/signup_controller.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:furniture_movers_project/screens/auth/loading_screen.dart';
 import 'package:furniture_movers_project/screens/auth/login_screen.dart';
-
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -31,24 +27,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     final isValid = _controller.validateForm();
 
-    if (!isValid || _controller.phoneController.text.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('يرجى إدخال رقم الهاتف')));
+    if (!isValid) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('يرجى تعبئة جميع الحقول بشكل صحيح')),
+      );
       return;
     }
-      Navigator.push(
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(child: CircularProgressIndicator(color: AppColors.primary,)),
+    );
+
+    final success = await _controller.signUpUser();
+    Navigator.pop(context); // remove loading
+
+    if (success) {
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => LoadingScreen(
-            message: 'انشاء حساب',
-            targetScreen: const LoginScreen(),
-          ),
-        ),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('فشل التسجيل. حاول مرة أخرى.')),
+      );
+    }
   }
 
   @override
@@ -81,11 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         TextSpan(
                           text: 'خدماتك',
-                          style: GoogleFonts.poppins(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.primary,
-                          ),
+                          style: AppFonts.signInServiceFont,
                         ),
                         const TextSpan(text: ' فلنقم بإنشاء حساب معًا '),
                       ],
@@ -94,41 +97,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 SizedBox(height: 24.h),
+
+                /// Name
                 CustomLabel(text: 'الاسم'),
                 SizedBox(height: 16.h),
                 CustomTextField(
                   controller: _controller.nameController,
                   hintText: 'محمد حسن',
                   icon: Icons.person_2_outlined,
-                  validator:
-                      (value) =>
-                          value == null || value.isEmpty
-                              ? 'الرجاء إدخال الاسم'
-                              : null,
+                  validator: (value) =>
+                      value == null || value.isEmpty ? 'الرجاء إدخال الاسم' : null,
                 ),
+
                 SizedBox(height: 24.h),
-                CustomLabel(text: 'رقم التلفون'),
+
+                /// Email
+                CustomLabel(text: 'البريد الإلكتروني'),
                 SizedBox(height: 16.h),
-                SizedBox(
-                  height: 60.h,
-                  child: IntlPhoneField(
-                    controller: _controller.phoneController,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: AppColors.veryLightGrey,
-                      border: InputBorder.none,
-                    ),
-                    initialCountryCode: 'SA',
-                    validator: (value) {
-                      if (value == null || value.number.isEmpty) {
-                        return 'يرجى إدخال رقم الهاتف';
-                      }
-                      return null;
-                    },
-                    textAlign: TextAlign.left,
-                  ),
+                CustomTextField(
+                  controller: _controller.emailController,
+                  hintText: 'example@example.com',
+                  icon: Icons.email_outlined,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'يرجى إدخال البريد الإلكتروني';
+                    }
+                    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                    if (!emailRegex.hasMatch(value)) {
+                      return 'يرجى إدخال بريد إلكتروني صحيح';
+                    }
+                    return null;
+                  },
                 ),
+
                 SizedBox(height: 24.h),
+
+                /// Password
                 CustomLabel(text: 'كلمة المرور'),
                 SizedBox(height: 16.h),
                 CustomPasswordField(
@@ -139,13 +143,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       _obscurePassword = !_obscurePassword;
                     });
                   },
-                  validator:
-                      (value) =>
-                          value == null || value.length < 6
-                              ? 'كلمة المرور يجب أن تكون 6 أحرف أو أكثر'
-                              : null,
+                  validator: (value) => value == null || value.length < 6
+                      ? 'كلمة المرور يجب أن تكون 6 أحرف أو أكثر'
+                      : null,
                 ),
+
                 SizedBox(height: 24.h),
+
+                /// Confirm Password
                 CustomLabel(text: 'تأكيد كلمة المرور'),
                 SizedBox(height: 16.h),
                 CustomPasswordField(
@@ -156,15 +161,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       _obscureConfirmPassword = !_obscureConfirmPassword;
                     });
                   },
-                  validator:
-                      (value) =>
-                          value != _controller.passwordController.text
-                              ? 'كلمة المرور غير متطابقة'
-                              : null,
+                  validator: (value) =>
+                      value != _controller.passwordController.text
+                          ? 'كلمة المرور غير متطابقة'
+                          : null,
                 ),
+
                 SizedBox(height: 120.h),
+
+                /// Button
                 CustomMainButton(text: 'إنشاء جديد', onPressed: _submitForm),
                 SizedBox(height: 16.h),
+
                 Align(
                   alignment: Alignment.center,
                   child: Wrap(
@@ -177,21 +185,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         child: Text(
                           'تسجيل الدخول',
-                          style: GoogleFonts.almarai(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.primary,
-                            decoration: TextDecoration.underline,
-                          ),
+                          style: AppFonts.accountLoginLink,
                         ),
                       ),
                       Text(
                         'لديك حساب مسبقا ؟ ',
-                        style: GoogleFonts.almarai(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.grey,
-                        ),
+                        style: AppFonts.signSecondaryFormFont,
                       ),
                     ],
                   ),
