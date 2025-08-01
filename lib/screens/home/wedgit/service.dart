@@ -15,7 +15,9 @@ final List<Service> services = [
   Service(title: 'الدهان والتشطيبات', imageAsset: 'assets/images/002.png'),
   Service(title: 'الأعمال الكهربائية', imageAsset: 'assets/images/001.png'),
   Service(
-      title: 'النجارة والديكور الخشبي', imageAsset: 'assets/images/003.png'),
+    title: 'النجارة والديكور الخشبي',
+    imageAsset: 'assets/images/003.png',
+  ),
 ];
 
 class ServicesList extends StatelessWidget {
@@ -26,25 +28,12 @@ class ServicesList extends StatelessWidget {
       case 'نقل الأثاث':
         page = FurnitureMoving();
         break;
-      // case 'صيانة الأجهزة المنزلية':
-      //   page = DeviceMaintenance();
-      //   break;
-      // case 'الدهان والتشطيبات':
-      //   page = PaintingPage();
-      //   break;
-      // case 'الأعمال الكهربائية':
-      //   page = ElectricWorkPage();
-      //   break;
-      // case 'النجارة والديكور الخشبي':
-      //   page = CarpentryPage();
-      //   break;
+      // أضف باقي الحالات هنا حسب الحاجة
       default:
         page = Scaffold(body: Center(child: Text('الخدمة غير متوفرة')));
     }
 
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => page),
-    );
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
   }
 
   @override
@@ -53,12 +42,18 @@ class ServicesList extends StatelessWidget {
       height: 160.h,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: ListView.separated(
+        child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: services.length,
-          separatorBuilder: (_, __) => SizedBox(width: 2.w),
+          itemCount: services.length * 2 - 1, // حساب الفواصل بين العناصر
           itemBuilder: (context, index) {
-            final service = services[index];
+            if (index.isOdd) {
+              // عنصر فاصل (فاصل أفقي)
+              return SizedBox(width: 8.w);
+            }
+
+            final itemIndex = index ~/ 2; // تقليل العدد لمطابقة العنصر الصحيح
+            final service = services[itemIndex];
+
             return InkWell(
               onTap: () => navigateToServicePage(context, service.title),
               child: Column(
