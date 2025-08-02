@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:furniture_movers_project/core/widgets/success_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+
 import '/core/theme/colors.dart';
 import '/core/widgets/custom_main_button.dart';
-import '../../core/theme/fonts.dart';
+
 import '../../core/widgets/custom_appbar.dart';
 
 class RestPasswordScreen extends StatefulWidget {

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
-import 'package:furniture_movers_project/screens/home/home_screen.dart';
+import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
+import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
+import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
+import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
 import 'package:furniture_movers_project/screens/service/service.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
@@ -15,10 +18,6 @@ import 'screens/auth/reset_password_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/profile/profile_screen.dart';
 import 'screens/chat/chat_list_screen.dart';
-import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
-import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
-import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
-import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
 
 void main() {
   runApp(const MyApp());

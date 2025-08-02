@@ -1,39 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart'
+    as WorkerService;
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 
 class FurnitureMoving extends StatefulWidget {
-  const FurnitureMoving({super.key});
+  final String categoryId;
+
+  const FurnitureMoving({super.key, required this.categoryId});
 
   @override
   State<FurnitureMoving> createState() => _FurnitureMovingState();
 }
 
 class _FurnitureMovingState extends State<FurnitureMoving> {
-  final List<Worker> workers = [
-    Worker(
-      name: "محمد حسن احمد",
-      jobTitle: "مهندس كهربائي",
-      imagePath: "assets/images/005.JPG",
-      rating: 4.5,
-    ),
-    Worker(
-      name: "علي عبدالله سعيد",
-      jobTitle: "نقل أثاث",
-      imagePath: "assets/images/005.JPG",
-      rating: 3.8,
-    ),
-    Worker(
-      name: "احمد سليمان",
-      jobTitle: "نجار محترف",
-      imagePath: "assets/images/005.JPG",
-      rating: 5.0,
-    ),
-  ];
+  late Future<List<WorkerModel>> futureWorkers;
+
+  @override
+  void initState() {
+    super.initState();
+    futureWorkers = WorkerService.fetchWorkers(widget.categoryId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +51,19 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
                 ),
                 SizedBox(height: 12.h),
                 CustomTitle(title: "الفنيون الموجودون في الخدمة"),
-                WorkersList(workers: workers),
+                FutureBuilder<List<WorkerModel>>(
+                  future: futureWorkers,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('حدث خطأ: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Center(child: Text('لا يوجد فنيون حالياً'));
+                    }
+                    return WorkersList(workers: snapshot.data!);
+                  },
+                ),
               ],
             ),
           ),
