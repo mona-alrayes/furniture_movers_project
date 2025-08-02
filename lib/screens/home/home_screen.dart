@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
-import 'package:furniture_movers_project/screens/chat/chat_list_screen.dart';
 import 'package:furniture_movers_project/screens/home/controllers/user_controller.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_appar.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar .dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
-import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/service.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/slidar.dart';
+import 'package:furniture_movers_project/screens/home/wedgit/worker_home.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,20 +33,20 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final List<Worker> workers = [
-    Worker(
+  final List<jobhome> workers = [
+    jobhome(
       name: "محمد حسن احمد",
       jobTitle: "مهندس كهربائي",
       imagePath: "assets/images/005.JPG",
       rating: 4.5,
     ),
-    Worker(
+    jobhome(
       name: "علي عبدالله سعيد",
       jobTitle: "نقل أثاث",
       imagePath: "assets/images/005.JPG",
       rating: 3.8,
     ),
-    Worker(
+    jobhome(
       name: "احمد سليمان",
       jobTitle: "نجار محترف",
       imagePath: "assets/images/005.JPG",
@@ -88,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              WorkersList(workers: workers),
+              // WorkersList(workers: workers),
             ],
           ),
         ),
@@ -96,4 +94,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
