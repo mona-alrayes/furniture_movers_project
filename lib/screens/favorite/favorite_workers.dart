@@ -1,19 +1,19 @@
-import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 
 class FavoriteWorkers {
-  static List<Worker> favorites = [];
+  static List<WorkerModel> favorites = [];
 
-  static void addToFavorites(Worker worker) {
+  static void addToFavorites(WorkerModel worker) {
     if (!favorites.contains(worker)) {
       favorites.add(worker);
     }
   }
 
-  static void removeFromFavorites(Worker worker) {
+  static void removeFromFavorites(WorkerModel worker) {
     favorites.remove(worker);
   }
 
-  static bool isFavorite(Worker worker) {
+  static bool isFavorite(WorkerModel worker) {
     return favorites.contains(worker);
   }
 }

@@ -1,39 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_button_hajz.dart';
-import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:furniture_movers_project/screens/favorite/favorite_workers.dart';
 import 'package:furniture_movers_project/screens/service/service.dart';
+import 'package:furniture_movers_project/screens/favorite/favorite_workers.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart'; // تم التعديل
 
 class WorkerCard extends StatelessWidget {
-  final String name;
-  final String jobTitle;
-  final String imagePath;
-  final double rating;
+  final WorkerModel worker;
   final VoidCallback onFavoritePressed;
 
   const WorkerCard({
     Key? key,
-    required this.name,
-    required this.jobTitle,
-    required this.imagePath,
-    required this.rating,
+    required this.worker,
     required this.onFavoritePressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final worker = WorkerModel(
-    //   name: name,
-    //   jobTitle: jobTitle,
-    //   imagePath: imagePath,
-    //   rating: rating,
-    // );
-
-    final isFavorite = FavoriteWorkers.isFavorite(WorkerModel);
+    final isFavorite = FavoriteWorkers.isFavorite(worker);
 
     return SizedBox(
       height: 160,
@@ -56,7 +43,7 @@ class WorkerCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Image.asset(
-              imagePath,
+              worker.imagePath,
               width: 140,
               height: 140,
               fit: BoxFit.cover,
@@ -101,10 +88,10 @@ class WorkerCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(name, style: GoogleFonts.almarai(fontSize: 14)),
+            Text(worker.name, style: GoogleFonts.almarai(fontSize: 14)),
             const SizedBox(height: 4),
             Text(
-              jobTitle,
+              worker.jobTitle,
               style: GoogleFonts.almarai(
                 fontSize: 16,
                 color: AppColors.black,
@@ -113,7 +100,7 @@ class WorkerCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             RatingBar.builder(
-              initialRating: rating,
+              initialRating: worker.rating,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
@@ -156,15 +143,14 @@ class _WorkersListState extends State<WorkersList> {
         final worker = widget.workers[index];
         return InkWell(
           onTap: () {
-            Navigator.of(
+            Navigator.pushNamed(
               context,
-            ).push(MaterialPageRoute(builder: (context) => ServiceDetails()));
+              '/serviceDetails',
+              arguments: worker.id, // مرر الـ ID هنا
+            );
           },
           child: WorkerCard(
-            name: worker.name,
-            jobTitle: worker.jobTitle,
-            imagePath: worker.imagePath,
-            rating: worker.rating,
+            worker: worker,
             onFavoritePressed: () {
               setState(() {
                 if (FavoriteWorkers.isFavorite(worker)) {
@@ -182,31 +168,3 @@ class _WorkersListState extends State<WorkersList> {
     );
   }
 }
-
-// class Worker {
-//   final int id;
-//   final String name;
-//   final String jobTitle;
-//   final String imagePath;
-//   final double rating;
-//   final int price;
-//     final String description,
-
-//   Worker({
-//     required this.name,
-//     required this.jobTitle,
-//     required this.imagePath,
-//     required this.rating,
-//   });
-
-//   @override
-//   bool operator ==(Object other) {
-//     return other is Worker &&
-//         other.name == name &&
-//         other.jobTitle == jobTitle &&
-//         other.imagePath == imagePath;
-//   }
-
-//   @override
-//   int get hashCode => name.hashCode ^ jobTitle.hashCode ^ imagePath.hashCode;
-// }

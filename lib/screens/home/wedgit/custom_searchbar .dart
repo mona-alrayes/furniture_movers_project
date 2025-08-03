@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -41,14 +40,13 @@ class CustomSearchBar extends StatelessWidget {
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(12.r),
             ),
-           
-              child: Image.asset(
-                'assets/icons/search.png', // لاحظ استبدال \ بـ / لتجنب مشاكل المسار
-                width: 24.w,
-                height: 24.h,
-              ),
+
+            child: Image.asset(
+              'assets/icons/search.png', // لاحظ استبدال \ بـ / لتجنب مشاكل المسار
+              width: 24.w,
+              height: 24.h,
             ),
-         
+          ),
         ],
       ),
     );

@@ -1,5 +1,5 @@
 class WorkerModel {
-  final String id;
+  final int? id;
   final String name;
   final String jobTitle;
   final String imagePath;
@@ -8,7 +8,7 @@ class WorkerModel {
   final String? description;
 
   const WorkerModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.jobTitle,
     required this.imagePath,
@@ -19,7 +19,7 @@ class WorkerModel {
 
   factory WorkerModel.fromJson(Map<String, dynamic> json) {
     return WorkerModel(
-      id: json['id'].toString(),
+      id: json['id'] as int?,
       name: json['name'] ?? '',
       jobTitle: json['job_title'] ?? '',
       imagePath: json['image_url'] ?? '',
@@ -28,4 +28,16 @@ class WorkerModel {
       description: json['description'],
     );
   }
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is WorkerModel &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          jobTitle == other.jobTitle &&
+          imagePath == other.imagePath;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^ jobTitle.hashCode ^ imagePath.hashCode ^ rating.hashCode;
 }
