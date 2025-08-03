@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 import 'package:furniture_movers_project/screens/home/controllers/user_controller.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_appar.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar .dart';
@@ -33,20 +34,20 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final List<jobhome> workers = [
-    jobhome(
+  final List<WorkerModel> workers = [
+    WorkerModel(
       name: "محمد حسن احمد",
       jobTitle: "مهندس كهربائي",
       imagePath: "assets/images/005.JPG",
       rating: 4.5,
     ),
-    jobhome(
+    WorkerModel(
       name: "علي عبدالله سعيد",
       jobTitle: "نقل أثاث",
       imagePath: "assets/images/005.JPG",
       rating: 3.8,
     ),
-    jobhome(
+    WorkerModel(
       name: "احمد سليمان",
       jobTitle: "نجار محترف",
       imagePath: "assets/images/005.JPG",

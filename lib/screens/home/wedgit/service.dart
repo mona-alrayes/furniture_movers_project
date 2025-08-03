@@ -28,7 +28,9 @@ class _ServicesListState extends State<ServicesList> {
           future: _futureServices,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator(color: AppColors.primary,));
+              return const Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              );
             } else if (snapshot.hasError) {
               return Center(child: Text('فشل في تحميل البيانات'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -45,7 +47,12 @@ class _ServicesListState extends State<ServicesList> {
                 return Padding(
                   padding: EdgeInsets.only(right: 8.w),
                   child: InkWell(
-                    onTap: () =>  Navigator.pushReplacementNamed(context, '/furnitureMoving' , arguments: service.id, ),
+                    onTap:
+                        () => Navigator.pushReplacementNamed(
+                          context,
+                          '/furnitureMoving',
+                          arguments: service.id.toString(), //لتحويله الى String
+                        ),
                     child: Column(
                       children: [
                         CircleAvatar(
