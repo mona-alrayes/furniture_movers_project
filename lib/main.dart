@@ -55,12 +55,7 @@ class MyApp extends StatelessWidget {
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
             '/profile': (_) => const ProfileScreen(),
             '/favorite': (_) => const FavoritesScreen(),
-             //  '/serviceDetails': (_) => const ServiceDetails(),
-            '/furnitureMoving': (context) {
-              final categoryId =
-                  ModalRoute.of(context)!.settings.arguments as String;
-              return FurnitureMoving(categoryId: categoryId);
-            }, //Ali Page FurnitureMoving
+            '/furnitureMoving': (context) => const FurnitureMoving(),
             '/about': (_) => const AboutAppScreen(),
             '/contactUs': (_) => const ContactUsScreen(),
           },

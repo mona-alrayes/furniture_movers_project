@@ -20,12 +20,12 @@ class WorkerModel {
   factory WorkerModel.fromJson(Map<String, dynamic> json) {
     return WorkerModel(
       id: json['id'] as int?,
-      name: json['name'] ?? '',
-      jobTitle: json['job_title'] ?? '',
-      imagePath: json['image_url'] ?? '',
+      name: json['name'] as String? ?? '', // Add type casting and null fallback
+      jobTitle: json['job_title'] as String? ?? '', // Add type casting and null fallback
+      imagePath: json['image_url'] as String? ?? '', // Add type casting and null fallback
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
-      price: json['price'],
-      description: json['description'],
+      price: json['price'] as int?, // Add type casting
+      description: json['description'] as String?, // Add type casting
     );
   }
   @override

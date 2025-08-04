@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
@@ -32,9 +33,9 @@ class _ServicesListState extends State<ServicesList> {
                 child: CircularProgressIndicator(color: AppColors.primary),
               );
             } else if (snapshot.hasError) {
-              return Center(child: Text('فشل في تحميل البيانات'));
+              return const Center(child: Text('فشل في تحميل البيانات'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child: Text('لا توجد خدمات متاحة حالياً'));
+              return const Center(child: Text('لا توجد خدمات متاحة حالياً'));
             }
 
             final services = snapshot.data!;
@@ -47,12 +48,14 @@ class _ServicesListState extends State<ServicesList> {
                 return Padding(
                   padding: EdgeInsets.only(right: 8.w),
                   child: InkWell(
-                    onTap:
-                        () => Navigator.pushReplacementNamed(
-                          context,
-                          '/furnitureMoving',
-                          arguments: service.id.toString(), //لتحويله الى String
-                        ),
+                    onTap: () => Navigator.pushReplacementNamed(
+                      context,
+                      '/furnitureMoving',
+                      arguments: {
+                        'id': service.id.toString(),
+                        'title': service.title,
+                      },
+                    ),
                     child: Column(
                       children: [
                         CircleAvatar(
