@@ -11,94 +11,94 @@ import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 
 class FurnitureMoving extends StatefulWidget {
-  final String categoryId;
-
-  const FurnitureMoving({super.key, required this.categoryId});
+  const FurnitureMoving({super.key});
 
   @override
   State<FurnitureMoving> createState() => _FurnitureMovingState();
 }
 
 class _FurnitureMovingState extends State<FurnitureMoving> {
+  late String categoryId;
+  late String title;
   late Future<List<WorkerModel>> futureWorkers;
+  bool _isInitialized = false;
 
-  @override
-  void initState() {
-    super.initState();
-    futureWorkers = WorkerService.fetchWorkers(widget.categoryId);
-  }
-
+  /// Handles custom back navigation
   void _handleBackNavigation() {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => MainLayout(initialIndex: 0),
-      ),
-    );
-  }
-
-  void _navigateToHome() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      ),
+      MaterialPageRoute(builder: (context) => MainLayout(initialIndex: 0)),
     );
   }
 
   @override
-    Widget build(BuildContext context) {
-      return WillPopScope(
-          onWillPop: () async {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => MainLayout(initialIndex: 0),
-          ),
-        );
+  Widget build(BuildContext context) {
+    // Retrieve arguments once
+    if (!_isInitialized) {
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      categoryId = args['id'];
+      title = args['title'];
+      futureWorkers = WorkerService.fetchWorkers(categoryId);
+      _isInitialized = true;
+    }
+
+    return WillPopScope(
+      onWillPop: () async {
+        _handleBackNavigation();
         return false;
       },
       child: Scaffold(
-      appBar: CustomAppBar(title: "نقل أثاث",
-        onBack: _navigateToHome,
-      ),
-      backgroundColor: Colors.white,
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 300.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/images/006.png"),
-                      fit: BoxFit.fill,
+        appBar: CustomAppBar(title: title, onBack: _handleBackNavigation),
+        backgroundColor: Colors.white,
+        body: Directionality(
+          textDirection: TextDirection.rtl,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 300.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.r),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/006.png"),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 12.h),
-                CustomTitle(title: "الفنيون الموجودون في الخدمة"),
-                FutureBuilder<List<WorkerModel>>(
-                  future: futureWorkers,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator(color: AppColors.primary,));
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('حدث خطأ: ${snapshot.error}'));
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const Center(child: Text('لا يوجد فنيون حالياً'));
-                    }
-                    return WorkersList(workers: snapshot.data!);
-                  },
-                ),
-              ],
+                  SizedBox(height: 12.h),
+                  CustomTitle(title: "الفنيون الموجودون في الخدمة"),
+                  SizedBox(height: 12.h),
+                  FutureBuilder<List<WorkerModel>>(
+                    future: futureWorkers,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Text('حدث خطأ: ${snapshot.error}'),
+                        );
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                          child: Text('لا يوجد فنيون حالياً'),
+                        );
+                      }
+                      return WorkersList(workers: snapshot.data!);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),),
+      ),
     );
   }
 }
