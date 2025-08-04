@@ -188,8 +188,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For support and questions:
-- Email: support@furnituremovers.com
-- Documentation: [Link to documentation]
+- Email: moon.2060@gmail.com
 - Issues: [GitHub Issues](https://github.com/yourusername/furniture_movers_project/issues)
 
 ## 🙏 Acknowledgments
