@@ -147,7 +147,6 @@ lib/
 - **Android**: API level 21 and above
 - **iOS**: iOS 11.0 and above
 - **Web**: Chrome, Firefox, Safari, Edge
-- **Desktop**: Windows, macOS, Linux
 
 ## 🔒 Security Features
 
