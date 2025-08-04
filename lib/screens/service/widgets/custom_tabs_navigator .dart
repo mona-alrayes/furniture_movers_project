@@ -5,9 +5,12 @@ import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/service/widgets/details_section.dart';
 import 'package:furniture_movers_project/screens/service/widgets/questions_section.dart';
 import 'package:furniture_movers_project/screens/service/widgets/rating_section.dart';
+import 'package:furniture_movers_project/screens/service/models/employee_model.dart';
 
 class CustomTabBar extends StatefulWidget {
-  const CustomTabBar({super.key});
+  final EmployeeModel employee; // model استلام الموظف من الصفحة
+
+  const CustomTabBar({super.key, required this.employee});
 
   @override
   State<CustomTabBar> createState() => _CustomTabBarState();
@@ -26,7 +29,12 @@ class _CustomTabBarState extends State<CustomTabBar> {
     if (index == 0) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => const DetailsSection()),
+        MaterialPageRoute(
+          builder:
+              (_) => DetailsSection(
+                employee: widget.employee,
+              ), //  تمرير الموظف للصفحة
+        ),
       );
     } else if (index == 1) {
       Navigator.push(
@@ -72,7 +80,8 @@ class _CustomTabBarState extends State<CustomTabBar> {
                     style: GoogleFonts.almarai(
                       fontSize: 14.sp,
                       color: isSelected ? Colors.white : AppColors.grey,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
                     ),
                   ),
                 ),
