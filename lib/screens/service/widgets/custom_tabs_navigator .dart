@@ -44,7 +44,9 @@ class _CustomTabBarState extends State<CustomTabBar> {
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => const QuestionsSection()),
+        MaterialPageRoute(
+          builder: (_) => QuestionsSection(employeeId: widget.employee.id),
+        ),
       );
     }
   }
