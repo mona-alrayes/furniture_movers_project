@@ -161,7 +161,8 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                       children: [
                         DetailsSection(employee: employee),
                         RatingSection(),
-                        QuestionsSection(),
+                        QuestionsSection(employeeId: employee.id),
+
                       ],
                     ),
                   ),

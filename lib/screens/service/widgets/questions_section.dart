@@ -1,28 +1,26 @@
-import 'dart:convert'; //  ضروري لتحويل json
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http; //  لإرسال الطلب
+import 'package:http/http.dart' as http;
 import 'employee_question_model.dart';
 
 class QuestionsSection extends StatelessWidget {
-  final int employeeId; //  إضافة معامل employeeId
+  final int employeeId;
 
-  const QuestionsSection({
-    Key? key,
-    required this.employeeId, //  إضافة معامل employeeId
-  }) : super(key: key);
+  const QuestionsSection({Key? key, required this.employeeId})
+    : super(key: key);
 
-  //  2. دالة لجلب الأسئلة من Supabase حسب الموظف المحدد
-  Future<List<EmployeeQuestion>> fetchQuestions() async {
+  //تمرير اي دي العامل
+  Future<List<EmployeeQuestion>> fetchQuestions(int employeeId) async {
     final response = await http.get(
       Uri.parse(
-        'https://ftcbwmmsnykncncsyrfs.supabase.co/rest/v1/employee_questions?employee_id=eq.$employeeId', //  استخدام employeeId المحدد
+        'https://ftcbwmmsnykncncsyrfs.supabase.co/rest/v1/employee_questions?employee_id=eq.$employeeId',
       ),
       headers: {
         'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw', 
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw',
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Y2J3bW1zbnlrbmNuY3N5cmZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjYzMjMsImV4cCI6MjA2ODk0MjMyM30.6p3lvgHZNRpgKTroIxA5TH_CPe3QsnihRqpqV_f__kw',
         'Content-Type': 'application/json',
@@ -43,7 +41,7 @@ class QuestionsSection extends StatelessWidget {
       backgroundColor: AppColors.white,
       body: Column(
         children: [
-          //  3. حقل إدخال السؤال
+          // ✅ حقل إدخال السؤال
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Row(
@@ -92,13 +90,12 @@ class QuestionsSection extends StatelessWidget {
             ),
           ),
 
-          //  4. ترويسة وعدد الأسئلة - سيتم تحديثها ديناميكياً
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
             child: Row(
               children: [
                 FutureBuilder<List<EmployeeQuestion>>(
-                  future: fetchQuestions(),
+                  future: fetchQuestions(employeeId),
                   builder: (context, snapshot) {
                     int questionCount = 0;
                     if (snapshot.hasData) {
@@ -106,7 +103,7 @@ class QuestionsSection extends StatelessWidget {
                     }
 
                     return Text(
-                      'أسئلة $questionCount', //  عرض العدد الفعلي للأسئلة
+                      'أسئلة $questionCount',
                       style: GoogleFonts.almarai(
                         color: AppColors.grey,
                         fontWeight: FontWeight.w400,
@@ -157,10 +154,10 @@ class QuestionsSection extends StatelessWidget {
             ),
           ),
 
-          //  5. FutureBuilder لعرض الأسئلة
+          //  عرض الأسئلة باستخدام employeeId
           Expanded(
             child: FutureBuilder<List<EmployeeQuestion>>(
-              future: fetchQuestions(),
+              future: fetchQuestions(employeeId),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
