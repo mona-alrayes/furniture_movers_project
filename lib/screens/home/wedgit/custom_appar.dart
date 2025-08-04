@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/screens/profile/profile_screen.dart';
 
 class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBarHome({super.key});
+   CustomAppBarHome({super.key});
 
   @override
   Size get preferredSize => Size.fromHeight(80.h);

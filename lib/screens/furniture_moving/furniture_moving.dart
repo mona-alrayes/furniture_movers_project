@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
+import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart'
     as WorkerService;
@@ -25,10 +26,27 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
     futureWorkers = WorkerService.fetchWorkers(widget.categoryId);
   }
 
+  void _handleBackNavigation() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => MainLayout(initialIndex: 0),
+      ),
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(title: "نقل أثاث"),
+    Widget build(BuildContext context) {
+      return WillPopScope(
+          onWillPop: () async {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => MainLayout(initialIndex: 0),
+          ),
+        );
+        return false;
+      },
+      child: Scaffold(
+      appBar: CustomAppBar(title: "نقل أثاث"),
       backgroundColor: Colors.white,
       body: Directionality(
         textDirection: TextDirection.rtl,
@@ -68,7 +86,7 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
             ),
           ),
         ),
-      ),
+      ),),
     );
   }
 }
