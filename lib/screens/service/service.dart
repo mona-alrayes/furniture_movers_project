@@ -44,7 +44,7 @@ class _ServiceDetailsState extends State<ServiceDetails> {
         future: employeeFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(color: AppColors.primary));
           } else if (snapshot.hasError || !snapshot.hasData) {
             return const Center(child: Text("حدث خطأ في تحميل البيانات"));
           }
@@ -94,7 +94,7 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                             loadingBuilder: (context, child, loadingProgress) {
                               if (loadingProgress == null) return child;
                               return const Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(color: AppColors.primary),
                               );
                             },
                           ),
