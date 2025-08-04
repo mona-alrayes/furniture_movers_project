@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             '/TermsAndConditions': (_) => const TermsConditionsScreen(),
             '/profile': (_) => const ProfileScreen(),
             '/favorite': (_) => const FavoritesScreen(),
-            '/serviceDetails': (_) => const ServiceDetails(),
+             //  '/serviceDetails': (_) => const ServiceDetails(),
             '/furnitureMoving': (context) {
               final categoryId =
                   ModalRoute.of(context)!.settings.arguments as String;

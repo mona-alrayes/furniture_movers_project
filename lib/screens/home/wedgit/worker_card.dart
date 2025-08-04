@@ -143,12 +143,15 @@ class _WorkersListState extends State<WorkersList> {
         final worker = widget.workers[index];
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(
+           // pass the worker id to serviceDetails
+            Navigator.push(
               context,
-              '/serviceDetails',
-              arguments: worker.id, // مرر الـ ID هنا
+              MaterialPageRoute(
+                builder: (_) => ServiceDetails(workerId: worker.id!),
+              ),
             );
           },
+
           child: WorkerCard(
             worker: worker,
             onFavoritePressed: () {
