@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
+import 'package:furniture_movers_project/screens/home/home_screen.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart'
     as WorkerService;
@@ -34,6 +35,14 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
     );
   }
 
+  void _navigateToHome() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
+  }
+
   @override
     Widget build(BuildContext context) {
       return WillPopScope(
@@ -46,7 +55,9 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
         return false;
       },
       child: Scaffold(
-      appBar: CustomAppBar(title: "نقل أثاث"),
+      appBar: CustomAppBar(title: "نقل أثاث",
+        onBack: _navigateToHome,
+      ),
       backgroundColor: Colors.white,
       body: Directionality(
         textDirection: TextDirection.rtl,
