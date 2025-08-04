@@ -143,12 +143,12 @@ class _SpecialWorkersListState extends State<SpecialWorkersList> {
         final worker = widget.workers[index];
         return InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ServiceDetails(workerId: worker.id!),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (_) => ServiceDetails(workerId: worker.id!),
+            //   ),
+            // );
           },
           child: SpecialWorkerCard(
             worker: worker,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart'
@@ -55,7 +56,7 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
                   future: futureWorkers,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator(color: AppColors.primary,));
                     } else if (snapshot.hasError) {
                       return Center(child: Text('حدث خطأ: ${snapshot.error}'));
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
