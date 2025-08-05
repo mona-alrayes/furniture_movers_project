@@ -4,7 +4,8 @@ import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
-import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart' as WorkerService;
+import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart'
+    as WorkerService;
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 
@@ -32,7 +33,8 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
   Widget build(BuildContext context) {
     // Retrieve arguments only once
     if (!_isInitialized) {
-      final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      final args =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       categoryId = args['id'];
       title = args['title'];
       imageUrl = args['image_url'];
@@ -71,26 +73,33 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
                   SizedBox(height: 12.h),
                   CustomTitle(title: "الفنيون الموجودون في الخدمة"),
                   SizedBox(height: 12.h),
-                  FutureBuilder<List<WorkerModel>>(
-                    future: futureWorkers,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.primary,
-                          ),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text('حدث خطأ: ${snapshot.error}'),
-                        );
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return const Center(
-                          child: Text('لا يوجد فنيون حالياً'),
-                        );
-                      }
-                      return WorkersList(workers: snapshot.data!);
-                    },
+                  SizedBox(
+                    height:
+                        MediaQuery.of(context).size.height *
+                        0.5, // أو استخدم double.infinity إذا كان مناسب
+                    child: FutureBuilder<List<WorkerModel>>(
+                      future: futureWorkers,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primary,
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text('حدث خطأ: ${snapshot.error}'),
+                          );
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return const Center(
+                            child: Text('لا يوجد فنيون حالياً'),
+                          );
+                        }
+                        return WorkersList(workers: snapshot.data!);
+                      },
+                    ),
                   ),
                 ],
               ),
