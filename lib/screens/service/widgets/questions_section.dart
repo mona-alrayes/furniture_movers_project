@@ -160,7 +160,7 @@ class QuestionsSection extends StatelessWidget {
               future: fetchQuestions(employeeId),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator(color: AppColors.primary,));
+                  return const Center(child: CircularProgressIndicator(color: AppColors.primary));
                 } else if (snapshot.hasError) {
                   return Center(child: Text('حدث خطأ: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {

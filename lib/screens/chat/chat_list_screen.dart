@@ -51,7 +51,7 @@ class ChatListScreen extends StatelessWidget {
           child: Consumer<ChatListController>(
             builder: (context, controller, child) {
               return controller.chatUsers.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator(color: AppColors.primary))
                   : ListView.builder(
                     padding: EdgeInsets.only(top: 16.h),
                       itemCount: controller.chatUsers.length,
