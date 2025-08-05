@@ -4,8 +4,7 @@ import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
-import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart'
-    as WorkerService;
+import 'package:furniture_movers_project/screens/furniture_moving/worker_service.dart' as WorkerService;
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 
@@ -33,8 +32,7 @@ class _FurnitureMovingState extends State<FurnitureMoving> {
   Widget build(BuildContext context) {
     // Retrieve arguments only once
     if (!_isInitialized) {
-      final args =
-          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+      final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
       categoryId = args['id'];
       title = args['title'];
       imageUrl = args['image_url'];
