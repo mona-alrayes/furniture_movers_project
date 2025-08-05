@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/home/controllers/service_controller.dart';
 
@@ -59,9 +59,29 @@ class _ServicesListState extends State<ServicesList> {
                     ),
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          radius: 40.r,
-                          backgroundImage: NetworkImage(service.imageUrl),
+                        ClipOval(
+                          child: CachedNetworkImage(
+                            imageUrl: service.imageUrl,
+                            width: 80.r,
+                            height: 80.r,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Container(
+                              width: 80.r,
+                              height: 80.r,
+                              alignment: Alignment.center,
+                              child: const CircularProgressIndicator(color:AppColors.primary),
+                            ),
+                            errorWidget: (context, url, error) => Container(
+                              width: 80.r,
+                              height: 80.r,
+                              color: AppColors.lightGrey,
+                              alignment: Alignment.center,
+                              child: const Icon(
+                                Icons.image_not_supported,
+                                color: AppColors.mediumGrey,
+                              ),
+                            ),
+                          ),
                         ),
                         SizedBox(height: 8.h),
                         SizedBox(
