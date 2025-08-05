@@ -27,6 +27,7 @@ class CustomSearchBar extends StatelessWidget {
                   icon: Icon(Icons.search, color: Colors.grey, size: 24.r),
                   hintText: 'ابحث عن خدمة أو فني',
                   hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                  contentPadding: EdgeInsets.only(bottom: 5 , top:5),
                   border: InputBorder.none,
                 ),
               ),
