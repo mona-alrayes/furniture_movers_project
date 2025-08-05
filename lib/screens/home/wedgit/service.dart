@@ -54,6 +54,7 @@ class _ServicesListState extends State<ServicesList> {
                       arguments: {
                         'id': service.id.toString(),
                         'title': service.title,
+                        'image_url': service.imageUrl,
                       },
                     ),
                     child: Column(

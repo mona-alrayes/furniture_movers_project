@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:furniture_movers_project/screens/service/widgets/rating_bottom_sheet.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_appbar.dart';
 import 'package:furniture_movers_project/core/widgets/custom_main_button.dart';
 import 'package:furniture_movers_project/screens/service/widgets/details_section.dart';
 import 'package:furniture_movers_project/screens/service/widgets/questions_section.dart';
 import 'package:furniture_movers_project/screens/service/widgets/rating_section.dart';
+import 'package:furniture_movers_project/screens/service/widgets/rating_bottom_sheet.dart';
 import 'package:furniture_movers_project/screens/service/models/employee_model.dart';
 import 'package:furniture_movers_project/screens/service/controllers/service_controller.dart';
 
@@ -23,7 +22,6 @@ class ServiceDetails extends StatefulWidget {
 
 class _ServiceDetailsState extends State<ServiceDetails> {
   int selectedTab = 0;
-
   late Future<EmployeeModel?> employeeFuture;
 
   final List<String> labels = ['تفاصيل', 'التقييم', 'الاسئلة'];
@@ -39,7 +37,6 @@ class _ServiceDetailsState extends State<ServiceDetails> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: CustomAppBar(title: "معلومات الفني"),
-
       body: FutureBuilder<EmployeeModel?>(
         future: employeeFuture,
         builder: (context, snapshot) {
@@ -55,7 +52,7 @@ class _ServiceDetailsState extends State<ServiceDetails> {
             textDirection: TextDirection.rtl,
             child: Column(
               children: [
-                // صورة الغلاف وصورة العامل
+                // Cover image and worker avatar
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -66,9 +63,7 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.r),
                           image: const DecorationImage(
-                            image: AssetImage(
-                              'assets/images/cover_noising.png',
-                            ),
+                            image: AssetImage('assets/images/cover_noising.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -88,11 +83,11 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                           child: Image.network(
                             employee.imageUrl,
                             fit: BoxFit.cover,
-                            errorBuilder:
-                                (context, error, stackTrace) =>
-                                    const Icon(Icons.error),
+                            errorBuilder: (_, __, ___) =>
+                                const Icon(Icons.error),
                             loadingBuilder: (context, child, loadingProgress) {
                               if (loadingProgress == null) return child;
+
                               return const Center(
                                 child: CircularProgressIndicator(color: AppColors.primary),
                               );
@@ -106,41 +101,35 @@ class _ServiceDetailsState extends State<ServiceDetails> {
 
                 SizedBox(height: 60.h),
 
-                // Tabs
+                // Tab buttons
                 Container(
                   height: 48.h,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 10.h,
-                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                   padding: EdgeInsets.all(4.r),
                   decoration: BoxDecoration(
                     color: AppColors.veryLightGrey,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Row(
-                    children: List.generate(4, (index) {
-                      if (index == 3) return const Expanded(child: SizedBox());
+                    children: List.generate(3, (index) {
                       return Expanded(
                         child: InkWell(
                           onTap: () => setState(() => selectedTab = index),
                           borderRadius: BorderRadius.circular(12.r),
                           child: Container(
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color:
-                                  selectedTab == index
-                                      ? AppColors.primary
-                                      : Colors.transparent,
+                              color: selectedTab == index
+                                  ? AppColors.primary
+                                  : Colors.transparent,
                               borderRadius: BorderRadius.circular(12.r),
                             ),
-                            alignment: Alignment.center,
                             child: Text(
                               labels[index],
                               style: GoogleFonts.almarai(
-                                color:
-                                    selectedTab == index
-                                        ? AppColors.white
-                                        : AppColors.grey,
+                                color: selectedTab == index
+                                    ? AppColors.white
+                                    : AppColors.grey,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp,
                               ),
@@ -152,7 +141,7 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                   ),
                 ),
 
-                // محتوى التاب
+                // Tab content
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -160,20 +149,16 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                       index: selectedTab,
                       children: [
                         DetailsSection(employee: employee),
-                        RatingSection(),
+                        RatingSection(rating: employee.rating), // ✅ Fixed
                         QuestionsSection(employeeId: employee.id),
-
                       ],
                     ),
                   ),
                 ),
 
-                // الأزرار السفلية
+                // Bottom buttons
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 16.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                   child: Column(
                     children: [
                       if (selectedTab == 0)
@@ -181,9 +166,7 @@ class _ServiceDetailsState extends State<ServiceDetails> {
                       if (selectedTab == 1)
                         CustomMainButton(
                           text: "إضافة تقييم",
-                          onPressed: () {
-                            showRatingBottomSheet(context);
-                          },
+                          onPressed: () => showRatingBottomSheet(context),
                         ),
                     ],
                   ),
