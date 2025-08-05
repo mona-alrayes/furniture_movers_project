@@ -142,6 +142,7 @@ class _RestPasswordScreenState extends State<RestPasswordScreen> {
                           message: 'تم إعادة تعيين كلمة المرور بنجاح',
                         ),
                   );
+                  Navigator.pushReplacementNamed(context, '/login');
                 },
               ),
             ],
