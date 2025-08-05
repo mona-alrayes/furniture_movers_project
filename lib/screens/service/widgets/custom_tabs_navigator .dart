@@ -8,7 +8,7 @@ import 'package:furniture_movers_project/screens/service/widgets/rating_section.
 import 'package:furniture_movers_project/screens/service/models/employee_model.dart';
 
 class CustomTabBar extends StatefulWidget {
-  final EmployeeModel employee; // model استلام الموظف من الصفحة
+  final EmployeeModel employee;
 
   const CustomTabBar({super.key, required this.employee});
 
@@ -22,33 +22,27 @@ class _CustomTabBarState extends State<CustomTabBar> {
   final List<String> titles = ['تفاصيل', 'التقييم', 'الاسئلة'];
 
   void handleTap(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+    setState(() => selectedIndex = index);
 
-    if (index == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder:
-              (_) => DetailsSection(
-                employee: widget.employee,
-              ), //  تمرير الموظف للصفحة
-        ),
-      );
-    } else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const RatingSection()),
-      );
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => QuestionsSection(employeeId: widget.employee.id),
-        ),
-      );
+    Widget screen;
+    switch (index) {
+      case 0:
+        screen = DetailsSection(employee: widget.employee);
+        break;
+      case 1:
+        screen = RatingSection(rating: widget.employee.rating); // Pass rating
+        break;
+      case 2:
+        screen = QuestionsSection(employeeId: widget.employee.id);
+        break;
+      default:
+        return;
     }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => screen),
+    );
   }
 
   @override

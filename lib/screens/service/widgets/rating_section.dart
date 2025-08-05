@@ -3,25 +3,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/theme/fonts.dart';
 
-class RatingSection extends StatefulWidget {
-  const RatingSection({Key? key}) : super(key: key);
+class RatingSection extends StatelessWidget {
+  final double rating; // Accept the rating from API
 
-  @override
-  State<RatingSection> createState() => _RatingSectionState();
-}
-
-class _RatingSectionState extends State<RatingSection> {
-  double rating = 5;
+  const RatingSection({Key? key, required this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     const Color mainBlue = Color(0xFF3B5BA9);
 
-    double fiveStars = (rating >= 5.0) ? 1.0 : 0.6;
-    double fourStars = (rating >= 4.0) ? 0.2 : 0.1;
-    double threeStars = (rating >= 3.0) ? 0.1 : 0.05;
-    double twoStars = (rating >= 2.0) ? 0.1 : 0.05;
-    double oneStar = (rating >= 1.0) ? 0.05 : 0.02;
+    // Calculate percentage bars based on rating (you can customize this logic)
+    double fiveStars = rating >= 5 ? 1.0 : rating >= 4.5 ? 0.85 : rating >= 4 ? 0.6 : 0.3;
+    double fourStars = rating >= 4 && rating < 4.5 ? 0.25 : 0.1;
+    double threeStars = rating >= 3 && rating < 4 ? 0.1 : 0.05;
+    double twoStars = rating >= 2 && rating < 3 ? 0.07 : 0.03;
+    double oneStar = rating < 2 ? 0.05 : 0.02;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -38,62 +34,57 @@ class _RatingSectionState extends State<RatingSection> {
                 child: Padding(
                   padding: EdgeInsets.only(right: 6.w),
                   child: Column(
-                    children:
-                        [
-                          {'percent': fiveStars, 'label': '5 نجوم'},
-                          {'percent': fourStars, 'label': '4 نجوم'},
-                          {'percent': threeStars, 'label': '3 نجوم'},
-                          {'percent': twoStars, 'label': '2 نجوم'},
-                          {'percent': oneStar, 'label': '1 نجمة'},
-                        ].map((r) {
-                          return Padding(
-                            padding: EdgeInsets.only(bottom: 12.h),
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${((r['percent'] as double) * 100).toInt()} %',
-                                  style: AppFonts.ratingFont,
-                                ),
-                                SizedBox(width: 8.w),
-                                Expanded(
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        height: 8.h,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFFE9F0FB),
-                                          borderRadius: BorderRadius.circular(
-                                            6.r,
-                                          ),
-                                        ),
-                                      ),
-                                      FractionallySizedBox(
-                                        widthFactor: r['percent'] as double,
-                                        child: Container(
-                                          height: 8.h,
-                                          decoration: BoxDecoration(
-                                            color: mainBlue,
-                                            borderRadius: BorderRadius.circular(
-                                              6.r,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  r['label'] as String,
-                                  style: TextStyle(
-                                    color: Colors.grey.shade700,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
+                    children: [
+                      {'percent': fiveStars, 'label': '5 نجوم'},
+                      {'percent': fourStars, 'label': '4 نجوم'},
+                      {'percent': threeStars, 'label': '3 نجوم'},
+                      {'percent': twoStars, 'label': '2 نجوم'},
+                      {'percent': oneStar, 'label': '1 نجمة'},
+                    ].map((r) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 12.h),
+                        child: Row(
+                          children: [
+                            Text(
+                              '${((r['percent'] as double) * 100).toInt()} %',
+                              style: AppFonts.ratingFont,
                             ),
-                          );
-                        }).toList(),
+                            SizedBox(width: 8.w),
+                            Expanded(
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    height: 8.h,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFE9F0FB),
+                                      borderRadius: BorderRadius.circular(6.r),
+                                    ),
+                                  ),
+                                  FractionallySizedBox(
+                                    widthFactor: r['percent'] as double,
+                                    child: Container(
+                                      height: 8.h,
+                                      decoration: BoxDecoration(
+                                        color: mainBlue,
+                                        borderRadius: BorderRadius.circular(6.r),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 8.w),
+                            Text(
+                              r['label'] as String,
+                              style: TextStyle(
+                                color: Colors.grey.shade700,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),
@@ -107,32 +98,31 @@ class _RatingSectionState extends State<RatingSection> {
                   children: [
                     SizedBox(height: 16.h),
                     Text(
-                      '$rating',
+                      rating.toStringAsFixed(1),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30.sp,
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(5, (index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                rating = (index + 1).toDouble();
-                              });
-                            },
-                            child: Icon(
-                              index < rating ? Icons.star : Icons.star_border,
-                              color: AppColors.yellow,
-                              size: 24.sp,
-                            ),
-                          );
-                        }),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(5, (index) {
+                        double currentStar = index + 1;
+                        IconData icon;
+                        if (rating >= currentStar) {
+                          icon = Icons.star;
+                        } else if (rating >= currentStar - 0.5) {
+                          icon = Icons.star_half;
+                        } else {
+                          icon = Icons.star_border;
+                        }
+                        return Icon(
+                          icon,
+                          color: AppColors.yellow,
+                          size: 24.sp,
+                        );
+                      }),
                     ),
                     SizedBox(height: 8.h),
                     Text('36 تقييم', style: AppFonts.ratingFont),
