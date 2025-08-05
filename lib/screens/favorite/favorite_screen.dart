@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_movers_project/screens/home/wedgit/worker_home.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/worker_card.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_workers.dart';
+import 'package:furniture_movers_project/screens/service/service.dart'; 
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -45,31 +45,40 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           ),
         ),
       ),
-      body:
-          favorites.isEmpty
-              ? Center(
-                child: Text(
-                  "لا يوجد عناصر مفضلة",
-                  style: GoogleFonts.almarai(fontSize: 18.sp),
-                ),
-              )
-              : ListView.separated(
-                padding: EdgeInsets.all(16.w),
-                itemCount: favorites.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
-                itemBuilder: (context, index) {
-                  final worker =
-                      favorites[index]; // worker هو من نوع WorkerModel
-                  return WorkerCard(
+      body: favorites.isEmpty
+          ? Center(
+              child: Text(
+                "لا يوجد عناصر مفضلة",
+                style: GoogleFonts.almarai(fontSize: 18.sp),
+              ),
+            )
+          : ListView.separated(
+              padding: EdgeInsets.all(16.w),
+              itemCount: favorites.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 8),
+              itemBuilder: (context, index) {
+                final worker = favorites[index];
+
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ServiceDetails(workerId: worker.id!),
+                      ),
+                    );
+                  },
+                  child: WorkerCard(
                     worker: worker,
                     onFavoritePressed: () {
                       setState(() {
                         FavoriteWorkers.removeFromFavorites(worker);
                       });
                     },
-                  );
-                },
-              ),
+                  ),
+                );
+              },
+            ),
     );
   }
 }
