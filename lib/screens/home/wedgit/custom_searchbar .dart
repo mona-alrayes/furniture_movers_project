@@ -22,7 +22,7 @@ class CustomSearchBar extends StatelessWidget {
                   hintText: 'ابحث عن خدمة أو فني',
                   hintStyle: AppFonts.aboutAppBodyFormFont,
                   isDense: true,
-                  contentPadding: EdgeInsets.symmetric(vertical: 12.0.h),
+                  contentPadding: EdgeInsets.symmetric(vertical: 12.0),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: BorderSide(color: Colors.grey.shade300),
