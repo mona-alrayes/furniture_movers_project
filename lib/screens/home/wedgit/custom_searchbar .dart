@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
+import 'package:furniture_movers_project/core/theme/fonts.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({super.key});
@@ -25,10 +26,10 @@ class CustomSearchBar extends StatelessWidget {
                 textAlign: TextAlign.right,
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.search, color: Colors.grey, size: 24.r),
+                  icon: Icon(Icons.search, color: Colors.grey),
                   hintText: 'ابحث عن خدمة أو فني',
-                  hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
-                  contentPadding: EdgeInsets.only(bottom: 10 ),
+                  hintStyle: AppFonts.aboutAppBodyFormFont,
+                  contentPadding: EdgeInsets.symmetric(vertical: 16.h),
                   border: InputBorder.none,
                 ),
               ),

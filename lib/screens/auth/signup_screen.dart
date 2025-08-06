@@ -167,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           : null,
                 ),
 
-                SizedBox(height: 120.h),
+                SizedBox(height: 94.h),
 
                 /// Button
                 CustomMainButton(text: 'إنشاء جديد', onPressed: _submitForm),

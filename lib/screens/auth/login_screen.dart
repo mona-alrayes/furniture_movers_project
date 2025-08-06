@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
 
-                      SizedBox(height: 96.h),
+                      SizedBox(height: 80.h),
 
                       /// Login Button
                       CustomMainButton(
