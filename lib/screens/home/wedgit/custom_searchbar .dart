@@ -15,22 +15,26 @@ class CustomSearchBar extends StatelessWidget {
           // صندوق البحث
           Expanded(
             child: Container(
-              height: 50.h,
-              padding: EdgeInsets.symmetric(horizontal: 12.w),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
               child: TextField(
                 textAlign: TextAlign.right,
-                textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.search, color: Colors.grey),
+                  prefixIcon: Icon(Icons.search, color: Colors.grey, size: 24),
                   hintText: 'ابحث عن خدمة أو فني',
                   hintStyle: AppFonts.aboutAppBodyFormFont,
-                  contentPadding: EdgeInsets.symmetric(vertical: 16.h),
-                  border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 12.0.h),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey.shade300),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey.shade300),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.blue),
+                  ),
                 ),
               ),
             ),
