@@ -3,11 +3,12 @@ import 'package:furniture_movers_project/core/theme/fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/core/theme/colors.dart';
 import '/core/widgets/custom_main_button.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 import 'package:furniture_movers_project/screens/auth/loading_screen.dart';
 import 'package:furniture_movers_project/core/widgets/main_layout.dart';
 import 'package:furniture_movers_project/screens/auth/controllers/login_controller.dart';
+import 'package:furniture_movers_project/core/widgets/custom_text_field.dart';
+import 'package:furniture_movers_project/core/widgets/custom_password_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -31,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        SystemNavigator.pop(); // Exit app on back button
+        SystemNavigator.pop();
         return false;
       },
       child: Stack(
@@ -73,6 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 32.h),
+
+                      /// Email
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
@@ -81,38 +84,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 16.h),
-                      SizedBox(
-                        height: 48.h,
-                        child: TextFormField(
-                          controller: _controller.emailController,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(color: AppColors.grey),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: AppColors.veryLightGrey,
-                            border: InputBorder.none,
-                            suffixIcon: Padding(
-                              padding: EdgeInsets.all(11.0),
-                              child: Icon(
-                                Icons.email,
-                                color: AppColors.mediumPrimary,
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.trim().isEmpty) {
-                              return 'يرجى إدخال البريد الإلكتروني';
-                            }
-                            final emailRegex =
-                                RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
-                            if (!emailRegex.hasMatch(value.trim())) {
-                              return 'صيغة البريد الإلكتروني غير صحيحة';
-                            }
-                            return null;
-                          },
-                        ),
+                      CustomTextField(
+                        controller: _controller.emailController,
+                        hintText: 'example@example.com',
+                        icon: Icons.email_outlined,
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'يرجى إدخال البريد الإلكتروني';
+                          }
+                          final emailRegex =
+                              RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+                          if (!emailRegex.hasMatch(value.trim())) {
+                            return 'صيغة البريد الإلكتروني غير صحيحة';
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(height: 24.h),
+
+                      /// Password
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
@@ -121,48 +111,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 16.h),
-                      SizedBox(
-                        height: 48.h,
-                        child: TextFormField(
-                          controller: _controller.passwordController,
-                          obscureText: _obscurePassword,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(color: AppColors.grey),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: AppColors.veryLightGrey,
-                            border: InputBorder.none,
-                            prefixIcon: IconButton(
-                              icon: Icon(
-                                _obscurePassword
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: AppColors.grey,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _obscurePassword = !_obscurePassword;
-                                });
-                              },
-                            ),
-                            suffixIcon: Padding(
-                              padding: EdgeInsets.all(11.0),
-                              child: SvgPicture.asset(
-                                  'assets/icons/lock-open.svg'),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.trim().isEmpty) {
-                              return 'يرجى إدخال كلمة المرور';
-                            }
-                            if (value.trim().length < 6) {
-                              return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
-                            }
-                            return null;
-                          },
-                        ),
+                      CustomPasswordField(
+                        controller: _controller.passwordController,
+                        obscureText: _obscurePassword,
+                        onToggle: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                        validator: (value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'يرجى إدخال كلمة المرور';
+                          }
+                          if (value.trim().length < 6) {
+                            return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(height: 8.h),
+
+                      /// Forgot Password
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, '/forgetPassword');
@@ -172,7 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: AppFonts.signSecondaryFormFont,
                         ),
                       ),
+
                       SizedBox(height: 96.h),
+
+                      /// Login Button
                       CustomMainButton(
                         text: 'تسجيل الدخول',
                         onPressed: () async {
@@ -208,6 +180,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       SizedBox(height: 16.h),
+
+                      /// Register Link
                       Align(
                         alignment: Alignment.center,
                         child: Wrap(
@@ -237,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
 
-          /// Loading overlay
+          /// Loading Overlay
           if (_isLoading)
             Container(
               color: Colors.black.withOpacity(0.3),

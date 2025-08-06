@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_service_special.dart';
-import 'package:furniture_movers_project/screens/home/controllers/user_controller.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_appar.dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_searchbar .dart';
 import 'package:furniture_movers_project/screens/home/wedgit/custom_title.dart';

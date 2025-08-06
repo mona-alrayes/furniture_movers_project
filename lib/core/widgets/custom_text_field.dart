@@ -19,25 +19,27 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 48.h,
-      child: TextFormField(
-        controller: controller,
-        validator: validator,
-        textAlign: TextAlign.right,
-        style: const TextStyle(color: AppColors.grey),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: AppColors.veryLightGrey,
-          border: InputBorder.none,
-          suffixIcon: Icon(icon, color: AppColors.mediumPrimary),
-          hintText: hintText,
-          hintStyle: GoogleFonts.almarai(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.mediumGrey,
-          ),
+    return TextFormField(
+      controller: controller,
+      validator: validator,
+      textAlign: TextAlign.right,
+      style: const TextStyle(color: AppColors.grey),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: AppColors.veryLightGrey,
+        suffixIcon: Icon(icon, color: AppColors.mediumPrimary),
+        hintText: hintText,
+        hintStyle: GoogleFonts.almarai(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.mediumGrey,
         ),
+        contentPadding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 12.w),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: BorderSide.none,
+        ),
+        errorStyle: TextStyle(fontSize: 12.sp),
       ),
     );
   }

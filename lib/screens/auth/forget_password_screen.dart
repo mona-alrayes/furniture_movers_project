@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '/core/theme/colors.dart';
 import '/core/widgets/custom_main_button.dart';
-import '../../core/theme/fonts.dart';
 import '../../core/widgets/custom_appbar.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
