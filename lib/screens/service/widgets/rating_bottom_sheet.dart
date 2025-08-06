@@ -5,7 +5,7 @@ import 'package:furniture_movers_project/core/widgets/custom_main_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void showRatingBottomSheet(BuildContext context) {
-  const Color mainBlue = Color(0xff4A87CB);
+  //const Color mainBlue = Color(0xff4A87CB);
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,

@@ -18,28 +18,29 @@ class CustomPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 48.h,
-      child: TextFormField(
-        controller: controller,
-        obscureText: obscureText,
-        validator: validator,
-        textAlign: TextAlign.right,
-        style: const TextStyle(color: AppColors.grey),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: AppColors.veryLightGrey,
-          border: InputBorder.none,
-          prefixIcon: IconButton(
-            icon: Icon(
-              obscureText ? Icons.visibility_off : Icons.visibility,
-              color: AppColors.grey,
-            ),
-            onPressed: onToggle,
+    return TextFormField(
+      controller: controller,
+      obscureText: obscureText,
+      validator: validator,
+      textAlign: TextAlign.right,
+      style: const TextStyle(color: AppColors.grey),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: AppColors.veryLightGrey,
+        prefixIcon: IconButton(
+          icon: Icon(
+            obscureText ? Icons.visibility_off : Icons.visibility,
+            color: AppColors.grey,
           ),
-          suffixIcon:
-              const Icon(Icons.lock_open, color: AppColors.mediumPrimary),
+          onPressed: onToggle,
         ),
+        suffixIcon: const Icon(Icons.lock_open, color: AppColors.mediumPrimary),
+        contentPadding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 12.w),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: BorderSide.none,
+        ),
+        errorStyle: TextStyle(fontSize: 12.sp),
       ),
     );
   }

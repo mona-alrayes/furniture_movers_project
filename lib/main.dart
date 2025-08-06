@@ -5,7 +5,6 @@ import 'package:furniture_movers_project/screens/favorite/favorite_screen.dart';
 import 'package:furniture_movers_project/screens/profile/about_app_screen.dart';
 import 'package:furniture_movers_project/screens/profile/contact_us_screen.dart';
 import 'package:furniture_movers_project/screens/profile/terms_conditions_screen.dart';
-import 'package:furniture_movers_project/screens/service/service.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/furniture_moving.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/splash/onboarding1_screen.dart';

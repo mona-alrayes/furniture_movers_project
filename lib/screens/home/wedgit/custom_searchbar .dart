@@ -23,11 +23,12 @@ class CustomSearchBar extends StatelessWidget {
               ),
               child: TextField(
                 textAlign: TextAlign.right,
+                textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                   icon: Icon(Icons.search, color: Colors.grey, size: 24.r),
                   hintText: 'ابحث عن خدمة أو فني',
                   hintStyle: TextStyle(color: Colors.grey, fontSize: 14.sp),
-                  contentPadding: EdgeInsets.only(bottom: 5 , top:5),
+                  contentPadding: EdgeInsets.only(bottom: 10 ),
                   border: InputBorder.none,
                 ),
               ),

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:furniture_movers_project/core/theme/colors.dart';
 import 'package:furniture_movers_project/core/widgets/custom_button_hajz.dart';
-import 'package:furniture_movers_project/screens/service/service.dart';
 import 'package:furniture_movers_project/screens/favorite/favorite_workers.dart';
 import 'package:furniture_movers_project/screens/furniture_moving/worker_model.dart';
 
